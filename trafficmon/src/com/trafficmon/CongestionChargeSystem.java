@@ -9,7 +9,7 @@ public class CongestionChargeSystem {
 
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<ZoneBoundaryCrossing>();
 
-    public void vehicleEnteringZone(Vehicle vehicle) {
+    public void vehicleEnteringZone(Vehicle vehicle) { //vehui
         eventLog.add(new EntryEvent(vehicle));
     }
 
@@ -34,6 +34,8 @@ public class CongestionChargeSystem {
         for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
             Vehicle vehicle = vehicleCrossings.getKey();
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
+            System.out.println("THIS IS CROSSINGS!");
+            System.out.println(crossings);
 
             if (!checkOrderingOf(crossings)) {
                 OperationsTeam.getInstance().triggerInvestigationInto(vehicle);
@@ -48,6 +50,8 @@ public class CongestionChargeSystem {
                 } catch (AccountNotRegisteredException e) {
                     OperationsTeam.getInstance().issuePenaltyNotice(vehicle, charge);
                 }
+
+
             }
         }
     }
@@ -58,7 +62,9 @@ public class CongestionChargeSystem {
 
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
 
-        for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
+        for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) { //loop through the sublist 1 --> size
+            System.out.println("THESE ARE SAMPLE TIMESTAMPS");
+            System.out.println(crossing.timestamp());
 
             if (crossing instanceof ExitEvent) {
                 charge = charge.add(
@@ -107,5 +113,17 @@ public class CongestionChargeSystem {
 
     public int getSizeofEventLog() {
         return eventLog.size();
+    }
+
+    public ZoneBoundaryCrossing getEventLogEntries(int i) {
+        return eventLog.get(i);
+    }
+
+    public BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit) {
+        ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
+        crossings.add(entry);
+        crossings.add(exit);
+
+        return calculateChargeForTimeInZone(crossings);
     }
 }
