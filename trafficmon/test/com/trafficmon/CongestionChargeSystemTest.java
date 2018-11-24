@@ -1,11 +1,13 @@
 package com.trafficmon;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.math.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.jmock.Expectations;
+import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
@@ -13,7 +15,12 @@ import static org.junit.Assert.assertTrue;
 
 public class CongestionChargeSystemTest {
 
-    CongestionChargeSystem system = new CongestionChargeSystem();
+    @Rule
+    public JUnitRuleMockery context = new JUnitRuleMockery();
+
+    OrderingInterpreter ordInterpret = context.mock(OrderingInterpreter.class);
+
+    CongestionChargeSystem system = new CongestionChargeSystem(ordInterpret);
 
 
     @Test
@@ -81,6 +88,61 @@ public class CongestionChargeSystemTest {
         MathContext mc = new MathContext(2);
         assertThat(first_car.round(mc), is((new BigDecimal(0.85)).round(mc)));
         assertThat(second_car.round(mc), is((new BigDecimal(1.25)).round(mc)));
+    }
+
+    @Test
+    public void checkOrderingOfCrossing_TimeStampError() {
+        /*
+        * Test Description
+        * Create an entry and exit with messed up timestamps
+        */
+        context.checking(new Expectations() {{
+            exactly(1).of(ordInterpret).timestamp_error();
+            exactly(1).of(ordInterpret).perfect_ordering();
+        }});
+
+        final List<ZoneBoundaryCrossing> crossings = new ArrayList<ZoneBoundaryCrossing>();
+        crossings.add((new EntryEvent(Vehicle.withRegistration("A123 XYZ")))); //adding an entry
+        crossings.add((new ExitEvent(Vehicle.withRegistration("A123 XYZ"))));//adding an exit
+        crossings.get(1).setTimeStamp(crossings.get(0).timestamp() - 1); //making the second event have a smaller timestamp than the first
+        system.checkOrderingOfCrossings(crossings);
+        crossings.get(1).setTimeStamp(crossings.get(0).timestamp() + 1);
+        system.checkOrderingOfCrossings(crossings);
+
+    }
+
+    @Test
+    public void checkOrderingOfCrossing_DoubleEntryError() {
+        /*
+        * Test Description
+        * Create an entry and exit with messed up timestamps
+        */
+        context.checking(new Expectations() {{
+            exactly(1).of(ordInterpret).doubleEntry_error();
+        }});
+
+        final List<ZoneBoundaryCrossing> crossings = new ArrayList<ZoneBoundaryCrossing>();
+        crossings.add((new EntryEvent(Vehicle.withRegistration("A123 XYZ")))); //adding an entry
+        crossings.add((new EntryEvent(Vehicle.withRegistration("A123 ABC"))));//adding an exit
+        system.checkOrderingOfCrossings(crossings);
+
+    }
+
+    @Test
+    public void checkOrderingOfCrossing_DoubleExitError() {
+        /*
+        * Test Description
+        * Create an entry and exit with messed up timestamps
+        */
+        context.checking(new Expectations() {{
+            exactly(1).of(ordInterpret).doubleExit_error();
+        }});
+
+        final List<ZoneBoundaryCrossing> crossings = new ArrayList<ZoneBoundaryCrossing>();
+        crossings.add((new ExitEvent(Vehicle.withRegistration("A123 XYZ")))); //adding an entry
+        crossings.add((new ExitEvent(Vehicle.withRegistration("A123 ABC"))));//adding an exit
+        system.checkOrderingOfCrossings(crossings);
+
     }
 
 

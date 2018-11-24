@@ -9,6 +9,13 @@ public class CongestionChargeSystem {
 
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<ZoneBoundaryCrossing>();
 
+    private final OrderingInterpreter InterpretOrderingError;
+
+    public CongestionChargeSystem(OrderingInterpreter ordInterpret) {
+        this.InterpretOrderingError = ordInterpret;
+    }
+
+
     public void vehicleEnteringZone(Vehicle vehicle) { //vehui
         eventLog.add(new EntryEvent(vehicle));
     }
@@ -92,17 +99,20 @@ public class CongestionChargeSystem {
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
         for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
             if (crossing.timestamp() < lastEvent.timestamp()) {
+                InterpretOrderingError.timestamp_error();
                 return false;
             }
             if (crossing instanceof EntryEvent && lastEvent instanceof EntryEvent) {
+                InterpretOrderingError.doubleEntry_error();
                 return false;
             }
             if (crossing instanceof ExitEvent && lastEvent instanceof ExitEvent) {
+                InterpretOrderingError.doubleExit_error();
                 return false;
             }
             lastEvent = crossing;
         }
-
+        InterpretOrderingError.perfect_ordering();
         return true;
     }
 

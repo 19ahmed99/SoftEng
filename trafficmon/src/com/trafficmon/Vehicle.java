@@ -24,14 +24,20 @@ public class Vehicle {
 
         Vehicle vehicle = (Vehicle) o;
 
-        if (registration != null ? !registration.equals(vehicle.registration) : vehicle.registration != null)
+        if (registration != null ? !registration.equals(vehicle.registration) : vehicle.registration != null) {
             return false;
+        }
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return registration != null ? registration.hashCode() : 0;
+        if (registration == null) return 0;
+        else return registration.hashCode();
+    }
+
+    public String getRegistration() {
+        return registration;
     }
 }
