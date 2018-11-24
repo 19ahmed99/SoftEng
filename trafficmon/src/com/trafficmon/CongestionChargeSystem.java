@@ -20,6 +20,8 @@ public class CongestionChargeSystem {
         eventLog.add(new ExitEvent(vehicle));
     }
 
+
+
     public void calculateCharges() {
 
         Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<Vehicle, List<ZoneBoundaryCrossing>>();
@@ -34,8 +36,6 @@ public class CongestionChargeSystem {
         for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
             Vehicle vehicle = vehicleCrossings.getKey();
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
-            System.out.println("THIS IS CROSSINGS!");
-            System.out.println(crossings);
 
             if (!checkOrderingOf(crossings)) {
                 OperationsTeam.getInstance().triggerInvestigationInto(vehicle);
@@ -90,7 +90,6 @@ public class CongestionChargeSystem {
     private boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
 
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
-
         for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
             if (crossing.timestamp() < lastEvent.timestamp()) {
                 return false;
@@ -107,22 +106,28 @@ public class CongestionChargeSystem {
         return true;
     }
 
+    public boolean checkOrderingOfCrossings(List<ZoneBoundaryCrossing> crossings){
+        return checkOrderingOf(crossings);
+    }
+
     private int minutesBetween(long startTimeMs, long endTimeMs) {
         return (int) Math.ceil((endTimeMs - startTimeMs) / (1000.0 * 60.0));
     }
 
     public int getSizeofEventLog() {
         return eventLog.size();
-    }
+    } //my own method
 
     public ZoneBoundaryCrossing getEventLogEntries(int i) {
         return eventLog.get(i);
-    }
+    } //my own method
 
     public BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit) {
         ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
         crossings.add(entry);
         crossings.add(exit);
         return calculateChargeForTimeInZone(crossings);
-    }
+    } //my own method
+
+
 }

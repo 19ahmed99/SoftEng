@@ -8,13 +8,10 @@ public class Example2 {
 
         CongestionChargeSystem congestionChargeSystem = new CongestionChargeSystem();
         congestionChargeSystem.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
-        congestionChargeSystem.getEventLogEntries(0).setTimeStamp(1000000);
         congestionChargeSystem.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
-        congestionChargeSystem.getEventLogEntries(1).setTimeStamp(2000000);
         BigDecimal our_value = congestionChargeSystem.getCalculatedCharge(congestionChargeSystem.getEventLogEntries(0),congestionChargeSystem.getEventLogEntries(1));
-        MathContext mc = new MathContext(2);
-        System.out.println(our_value.round(mc));
-        System.out.println("THIS IS OUR VALUE");
+        System.out.println(congestionChargeSystem.getEventLogEntries(0).timestamp());
+        System.out.println(congestionChargeSystem.getEventLogEntries(1).timestamp());
         congestionChargeSystem.calculateCharges();
     }
 
