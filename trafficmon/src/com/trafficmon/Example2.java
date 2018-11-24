@@ -1,6 +1,6 @@
 package com.trafficmon;
 
-import java.math.BigDecimal;
+import java.math.*;
 
 public class Example2 {
 
@@ -11,8 +11,9 @@ public class Example2 {
         congestionChargeSystem.getEventLogEntries(0).setTimeStamp(1000000);
         congestionChargeSystem.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
         congestionChargeSystem.getEventLogEntries(1).setTimeStamp(2000000);
-        BigDecimal our_value = new BigDecimal(String.valueOf(congestionChargeSystem.getCalculatedCharge(congestionChargeSystem.getEventLogEntries(0),congestionChargeSystem.getEventLogEntries(1) )));
-        System.out.println(our_value);
+        BigDecimal our_value = congestionChargeSystem.getCalculatedCharge(congestionChargeSystem.getEventLogEntries(0),congestionChargeSystem.getEventLogEntries(1));
+        MathContext mc = new MathContext(2);
+        System.out.println(our_value.round(mc));
         System.out.println("THIS IS OUR VALUE");
         congestionChargeSystem.calculateCharges();
     }

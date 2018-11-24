@@ -123,7 +123,6 @@ public class CongestionChargeSystem {
         ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
         crossings.add(entry);
         crossings.add(exit);
-
         return calculateChargeForTimeInZone(crossings);
     }
 }
