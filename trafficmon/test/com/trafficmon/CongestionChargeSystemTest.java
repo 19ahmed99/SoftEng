@@ -20,7 +20,9 @@ public class CongestionChargeSystemTest {
 
     OrderingInterpreter ordInterpret = context.mock(OrderingInterpreter.class);
 
-    CongestionChargeSystem system = new CongestionChargeSystem(ordInterpret);
+    OperationsTeamSystem operationsTeamSystem = context.mock(OperationsTeamSystem.class);
+
+    CongestionChargeSystem system = new CongestionChargeSystem(ordInterpret, operationsTeamSystem);
 
 
     @Test
@@ -145,6 +147,52 @@ public class CongestionChargeSystemTest {
 
     }
 
+    @Test
+    public void checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps(){
+        /*
+        * create a vehicle with entry and exit
+        * edit the entry and exit events to have messed up timestamp
+        * call the calculateCharges() method
+        * you expect to see a call to the mock object of the operationsteamsystem
+        * */
+
+        context.checking(new Expectations() {{
+            exactly(1).of(ordInterpret).timestamp_error();
+            exactly(1).of(operationsTeamSystem).triggerInvestigationIntoVehicle();
+        }});
+
+        system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
+        system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
+        system.getEventLogEntries(0).setTimeStamp(2000000); //it enters at time 1000
+        system.getEventLogEntries(1).setTimeStamp(1000000); //it enters at time 1000
+        system.calculateCharges();
+
+    }
+
+    @Test
+    public void checkPenaltyNoticeIssuedForInsufficientFunds(){
+
+        context.checking(new Expectations() {{
+            exactly(1).of(ordInterpret).perfect_ordering();
+            exactly(1).of(operationsTeamSystem).issuePenaltyNotice();
+        }});
+
+        system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
+        system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
+        system.getEventLogEntries(0).setTimeStamp(1000000); //it enters at time 1000
+        system.getEventLogEntries(1).setTimeStamp(1000000000); //it enters at time 1000
+        system.calculateCharges();
+
+    }
+
+    @Test
+    public void checkPreviouslyRegistred(){
+        //Create an exit event for the car
+        //calaculate charges and see what comes up
+        assertFalse(system.checkIfRegistered(Vehicle.withRegistration("A123 XYZ")));
+        
+
+    }
 
 
 

@@ -10,9 +10,11 @@ public class CongestionChargeSystem {
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<ZoneBoundaryCrossing>();
 
     private final OrderingInterpreter InterpretOrderingError;
+    private final OperationsTeamSystem operationsTeamSystem;
 
-    public CongestionChargeSystem(OrderingInterpreter ordInterpret) {
+    public CongestionChargeSystem(OrderingInterpreter ordInterpret, OperationsTeamSystem operationsTeamSystem) {
         this.InterpretOrderingError = ordInterpret;
+        this.operationsTeamSystem = operationsTeamSystem;
     }
 
 
@@ -32,6 +34,7 @@ public class CongestionChargeSystem {
     public void calculateCharges() {
 
         Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<Vehicle, List<ZoneBoundaryCrossing>>();
+        //hashmap: (key,value) = (Vehicle object, arraylist of their entry and exits , starts off empty
 
         for (ZoneBoundaryCrossing crossing : eventLog) {
             if (!crossingsByVehicle.containsKey(crossing.getVehicle())) {
@@ -39,22 +42,25 @@ public class CongestionChargeSystem {
             }
             crossingsByVehicle.get(crossing.getVehicle()).add(crossing);
         }
+        //loop through the eventlog and if the crossing was done by a car in the hashmap then just add it to its arraylist
+        //if its not already in the hashmap, create the new entry and add the event to its arraylist
 
         for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
             Vehicle vehicle = vehicleCrossings.getKey();
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
+            //loop through the hashmap and set "vehicle" to the key and "crossings" to the arraylist
 
             if (!checkOrderingOf(crossings)) {
-                OperationsTeam.getInstance().triggerInvestigationInto(vehicle);
+                operationsTeamSystem.triggerInvestigationIntoVehicle();
+                OperationsTeam.getInstance().triggerInvestigationInto(vehicle); //if ordering is messed up, then investigate
             } else {
 
-                BigDecimal charge = calculateChargeForTimeInZone(crossings);
+                BigDecimal charge = calculateChargeForTimeInZone(crossings); //calculate the charge
 
                 try {
                     RegisteredCustomerAccountsService.getInstance().accountFor(vehicle).deduct(charge);
-                } catch (InsufficientCreditException ice) {
-                    OperationsTeam.getInstance().issuePenaltyNotice(vehicle, charge);
-                } catch (AccountNotRegisteredException e) {
+                } catch (InsufficientCreditException | AccountNotRegisteredException ice) {
+                    operationsTeamSystem.issuePenaltyNotice();
                     OperationsTeam.getInstance().issuePenaltyNotice(vehicle, charge);
                 }
 
@@ -69,9 +75,7 @@ public class CongestionChargeSystem {
 
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
 
-        for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) { //loop through the sublist 1 --> size
-            System.out.println("THESE ARE SAMPLE TIMESTAMPS");
-            System.out.println(crossing.timestamp());
+        for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
 
             if (crossing instanceof ExitEvent) {
                 charge = charge.add(
@@ -138,6 +142,9 @@ public class CongestionChargeSystem {
         crossings.add(exit);
         return calculateChargeForTimeInZone(crossings);
     } //my own method
+
+    public boolean checkIfRegistered(Vehicle vehicle){return previouslyRegistered(vehicle);}//my own method
+
 
 
 }
