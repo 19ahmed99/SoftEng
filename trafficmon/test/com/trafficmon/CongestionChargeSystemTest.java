@@ -186,11 +186,12 @@ public class CongestionChargeSystemTest {
     }
 
     @Test
-    public void checkPreviouslyRegistred(){
+    public void checkPreviouslyRegistered(){
         //Create an exit event for the car
         //calaculate charges and see what comes up
         assertFalse(system.checkIfRegistered(Vehicle.withRegistration("A123 XYZ")));
-        
+        system.vehicleEnteringZone(Vehicle.withRegistration("A123 ABC"));
+        assertTrue(system.checkIfRegistered(Vehicle.withRegistration("A123 ABC")));
 
     }
 
