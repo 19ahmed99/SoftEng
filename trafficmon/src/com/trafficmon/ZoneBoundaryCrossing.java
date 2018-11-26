@@ -5,10 +5,6 @@ public abstract class ZoneBoundaryCrossing {
     private final Vehicle vehicle;
     private long time;
 
-    public ZoneBoundaryCrossing(Vehicle vehicle, long time) {
-        this.vehicle = vehicle;
-        this.time = time;
-    }
 
     public ZoneBoundaryCrossing(Vehicle vehicle) {
         this.vehicle = vehicle;

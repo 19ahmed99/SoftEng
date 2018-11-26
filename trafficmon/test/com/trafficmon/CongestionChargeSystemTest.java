@@ -195,6 +195,12 @@ public class CongestionChargeSystemTest {
 
     }
 
+    @Test
+    public void unregisteredCarExitTest(){
+        system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
+        assertThat(system.getSizeofEventLog(), is(0));
+
+    }
 
 
 }
