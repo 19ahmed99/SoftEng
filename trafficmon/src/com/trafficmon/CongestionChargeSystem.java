@@ -9,12 +9,14 @@ public class CongestionChargeSystem {
 
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<ZoneBoundaryCrossing>();
 
-    private final OrderingInterpreter InterpretOrderingError;
-    private final OperationsTeamSystem operationsTeamSystem;
+    private PenaltiesService operationsTeam;
 
-    public CongestionChargeSystem(OrderingInterpreter ordInterpret, OperationsTeamSystem operationsTeamSystem) {
-        this.InterpretOrderingError = ordInterpret;
-        this.operationsTeamSystem = operationsTeamSystem;
+    public CongestionChargeSystem() {
+        this.operationsTeam = OperationsTeam.getInstance();
+    }
+
+    public CongestionChargeSystem(PenaltiesService operationsTeam) {
+        this.operationsTeam = operationsTeam;
     }
 
 
@@ -28,8 +30,6 @@ public class CongestionChargeSystem {
         }
         eventLog.add(new ExitEvent(vehicle));
     }
-
-
 
     public void calculateCharges() {
 
@@ -51,20 +51,13 @@ public class CongestionChargeSystem {
             //loop through the hashmap and set "vehicle" to the key and "crossings" to the arraylist
 
             if (!checkOrderingOf(crossings)) {
-                operationsTeamSystem.triggerInvestigationIntoVehicle();
-                OperationsTeam.getInstance().triggerInvestigationInto(vehicle); //if ordering is messed up, then investigate
+                operationsTeam.triggerInvestigationInto(vehicle); //if ordering is messed up, then investigate
             } else {
-
                 BigDecimal charge = calculateChargeForTimeInZone(crossings); //calculate the charge
-
                 try {
                     RegisteredCustomerAccountsService.getInstance().accountFor(vehicle).deduct(charge);
                 } catch (InsufficientCreditException | AccountNotRegisteredException ice) {
-                    operationsTeamSystem.issuePenaltyNotice();
-                    OperationsTeam.getInstance().issuePenaltyNotice(vehicle, charge);}
-
-
-
+                    operationsTeam.issuePenaltyNotice(vehicle, charge);}
             }
         }
     }
@@ -78,14 +71,10 @@ public class CongestionChargeSystem {
         for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
 
             if (crossing instanceof ExitEvent) {
-                charge = charge.add(
-                        new BigDecimal(minutesBetween(lastEvent.timestamp(), crossing.timestamp()))
-                                .multiply(CHARGE_RATE_POUNDS_PER_MINUTE));
+                charge = charge.add(new BigDecimal(minutesBetween(lastEvent.timestamp(), crossing.timestamp())).multiply(CHARGE_RATE_POUNDS_PER_MINUTE));
             }
-
             lastEvent = crossing;
         }
-
         return charge;
     }
 
@@ -103,20 +92,16 @@ public class CongestionChargeSystem {
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
         for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
             if (crossing.timestamp() < lastEvent.timestamp()) {
-                InterpretOrderingError.timestamp_error();
                 return false;
             }
             if (crossing instanceof EntryEvent && lastEvent instanceof EntryEvent) {
-                InterpretOrderingError.doubleEntry_error();
                 return false;
             }
             if (crossing instanceof ExitEvent && lastEvent instanceof ExitEvent) {
-                InterpretOrderingError.doubleExit_error();
                 return false;
             }
             lastEvent = crossing;
         }
-        InterpretOrderingError.perfect_ordering();
         return true;
     }
 
@@ -144,7 +129,4 @@ public class CongestionChargeSystem {
     } //my own method
 
     public boolean checkIfRegistered(Vehicle vehicle){return previouslyRegistered(vehicle);}//my own method
-
-
-
 }
