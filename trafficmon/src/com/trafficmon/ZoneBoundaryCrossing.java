@@ -5,7 +5,7 @@ public abstract class ZoneBoundaryCrossing {
     private final Vehicle vehicle;
     private long time;
 
-    public ZoneBoundaryCrossing(Vehicle vehicle) {
+    ZoneBoundaryCrossing(Vehicle vehicle) {
         this.vehicle = vehicle;
         this.time = System.currentTimeMillis();
     }
@@ -18,8 +18,9 @@ public abstract class ZoneBoundaryCrossing {
         return time;
     }
 
+    // ----- Test Methods -----
+
     public void setTimeStamp(long time){
         this.time = time;
     }
-
 }

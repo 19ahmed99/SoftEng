@@ -11,7 +11,6 @@ public class VehicleTest {
     public void checkToString() {
         Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
         assertThat(vehicle.toString(), is("Vehicle [A123 XYZ]"));
-
     }
 
     @Test
@@ -32,10 +31,5 @@ public class VehicleTest {
 
         Vehicle vehicle2 = Vehicle.withRegistration("A123 XYZ");
         assertTrue(vehicle2.hashCode() == vehicle2.getRegistration().hashCode());
-
     }
-
-
-
-
 }
