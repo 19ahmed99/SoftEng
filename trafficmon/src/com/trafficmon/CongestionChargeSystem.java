@@ -8,6 +8,7 @@ public class CongestionChargeSystem {
     private static final BigDecimal CHARGE_RATE_POUNDS_PER_MINUTE = new BigDecimal(0.05);
 
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<>();
+    private final Calculator calculator = new Calculator(this);
 
     private PenaltiesService operationsTeam;
 
@@ -17,7 +18,6 @@ public class CongestionChargeSystem {
     CongestionChargeSystem(PenaltiesService operationsTeam) {
         this.operationsTeam = operationsTeam;
     }
-
 
     public void vehicleEnteringZone(Vehicle vehicle) { //Vehicle Entry
         eventLog.add(new EntryEvent(vehicle));
@@ -30,50 +30,22 @@ public class CongestionChargeSystem {
     }
 
     public void calculateCharges() {
+        calculator.calculateCharges(generateHashMap(), CHARGE_RATE_POUNDS_PER_MINUTE);
+    }
 
-        Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<>();
+    private Map<Vehicle, List<ZoneBoundaryCrossing>> generateHashMap() { //we made this method
+        Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<Vehicle, List<ZoneBoundaryCrossing>>();
         //hashmap: (key,value) = (Vehicle object, arraylist of their entry and exits , starts off empty
 
         for (ZoneBoundaryCrossing crossing : eventLog) {
             if (!crossingsByVehicle.containsKey(crossing.getVehicle())) {
-                crossingsByVehicle.put(crossing.getVehicle(), new ArrayList<>());
+                crossingsByVehicle.put(crossing.getVehicle(), new ArrayList<ZoneBoundaryCrossing>());
             }
             crossingsByVehicle.get(crossing.getVehicle()).add(crossing);
         }
         //loop through the eventlog and if the crossing was done by a car in the hashmap then just add it to its arraylist
         //if its not already in the hashmap, create the new entry and add the event to its arraylist
-
-        for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
-            Vehicle vehicle = vehicleCrossings.getKey();
-            List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
-            //loop through the hashmap and set "vehicle" to the key and "crossings" to the arraylist
-
-            if (!checkOrderingOf(crossings)) {
-                operationsTeam.triggerInvestigationInto(vehicle); //if ordering is messed up, then investigate
-            } else {
-                BigDecimal charge = calculateChargeForTimeInZone(crossings); //calculate the charge
-                try {
-                    RegisteredCustomerAccountsService.getInstance().accountFor(vehicle).deduct(charge);
-                } catch (InsufficientCreditException | AccountNotRegisteredException ice) {
-                    operationsTeam.issuePenaltyNotice(vehicle, charge);}
-            }
-        }
-    }
-
-    private BigDecimal calculateChargeForTimeInZone(List<ZoneBoundaryCrossing> crossings) {
-
-        BigDecimal charge = new BigDecimal(0);
-
-        ZoneBoundaryCrossing lastEvent = crossings.get(0);
-
-        for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
-
-            if (crossing instanceof ExitEvent) {
-                charge = charge.add(new BigDecimal(minutesBetween(lastEvent.timestamp(), crossing.timestamp())).multiply(CHARGE_RATE_POUNDS_PER_MINUTE));
-            }
-            lastEvent = crossing;
-        }
-        return charge;
+        return crossingsByVehicle;
     }
 
     private boolean previouslyRegistered(Vehicle vehicle) {
@@ -85,7 +57,8 @@ public class CongestionChargeSystem {
         return false;
     }
 
-    private boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
+    //notice, i made this protected so it can be accessed from the calculator
+    protected boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
 
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
         for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
@@ -95,10 +68,6 @@ public class CongestionChargeSystem {
             lastEvent = crossing;
         }
         return true;
-    }
-
-    private int minutesBetween(long startTimeMs, long endTimeMs) {
-        return (int) Math.ceil((endTimeMs - startTimeMs) / (1000.0 * 60.0));
     }
 
     // ----- Test Methods -----
@@ -119,10 +88,14 @@ public class CongestionChargeSystem {
         ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
         crossings.add(entry);
         crossings.add(exit);
-        return calculateChargeForTimeInZone(crossings);
+        return calculator.calculateChargeForTimeInZone(crossings, CHARGE_RATE_POUNDS_PER_MINUTE);
     } //my own method
 
     public boolean checkIfRegistered(Vehicle vehicle) {
         return previouslyRegistered(vehicle);
     }//my own method
+
+    public PenaltiesService getOperationsTeam() {
+        return operationsTeam;
+    }
 }
