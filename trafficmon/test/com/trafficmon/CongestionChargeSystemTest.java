@@ -20,8 +20,9 @@ public class CongestionChargeSystemTest {
 
     private PenaltiesService penaltiesService = context.mock(PenaltiesService.class);
     private CongestionChargeSystem system = new CongestionChargeSystem(penaltiesService);
-    private Calculator calculator = new Calculator(system);
-    private Checker checker = new Checker(system);
+    private Checker checker = new Checker();
+    private Calculator calculator = new Calculator(checker, penaltiesService);
+
 
     @Test
     public void carGoesInAndOutCheckEventLogSize() {
@@ -162,9 +163,9 @@ public class CongestionChargeSystemTest {
     public void checkPreviouslyRegistered(){
         //Create an entry event for the car
         //Check that it's registered after
-        assertFalse(checker.checkIfRegistered(Vehicle.withRegistration("A123 ABC")));
+        assertFalse(checker.previouslyRegistered(Vehicle.withRegistration("A123 ABC"), system.getEventLog()));
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 ABC"));
-        assertTrue(checker.checkIfRegistered(Vehicle.withRegistration("A123 ABC")));
+        assertTrue(checker.previouslyRegistered(Vehicle.withRegistration("A123 ABC"), system.getEventLog()));
     }
 
     @Test
@@ -173,6 +174,6 @@ public class CongestionChargeSystemTest {
         // Check that it's not registered
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
         assertThat(system.getEventLog().size(), is(0));
-        assertFalse(checker.checkIfRegistered(Vehicle.withRegistration("A123 XYZ")));
+        assertFalse(checker.previouslyRegistered(Vehicle.withRegistration("A123 XYZ"), system.getEventLog()));
     }
 }

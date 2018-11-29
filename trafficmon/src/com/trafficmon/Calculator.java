@@ -2,21 +2,21 @@ package com.trafficmon;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Calculator {
-    private final CongestionChargeSystem congestionChargeSystem;
+    private static final BigDecimal CHARGE_RATE_POUNDS_PER_MINUTE = new BigDecimal(0.05);
     private Checker checker;
+    private PenaltiesService operationsTeam;
 
 
-    Calculator(CongestionChargeSystem congestionChargeSystem) {
-        this.congestionChargeSystem = congestionChargeSystem;
-        this.checker = new Checker(congestionChargeSystem);
+    Calculator(Checker checker, PenaltiesService operationsTeam) {
+        this.checker = checker;
+        this.operationsTeam = operationsTeam;
     }
 
-    public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle,BigDecimal CHARGE_RATE_POUNDS_PER_MINUTE) {
+    public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
 
         for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
             Vehicle vehicle = vehicleCrossings.getKey();
@@ -24,19 +24,19 @@ public class Calculator {
             //loop through the hashmap and set "vehicle" to the key and "crossings" to the arraylist
 
             if (!checker.checkOrderingOf(crossings)) {
-                congestionChargeSystem.getOperationsTeam().triggerInvestigationInto(vehicle); //if ordering is messed up, then investigate
+                operationsTeam.triggerInvestigationInto(vehicle); //if ordering is messed up, then investigate
             } else {
-                BigDecimal charge = calculateChargeForTimeInZone(crossings, CHARGE_RATE_POUNDS_PER_MINUTE); //calculate the charge
+                BigDecimal charge = calculateChargeForTimeInZone(crossings); //calculate the charge
                 try {
                     RegisteredCustomerAccountsService.getInstance().accountFor(vehicle).deduct(charge);
                 } catch (InsufficientCreditException | AccountNotRegisteredException ice) {
-                    congestionChargeSystem.getOperationsTeam().issuePenaltyNotice(vehicle, charge);
+                    operationsTeam.issuePenaltyNotice(vehicle, charge);
                 }
             }
         }
     }
 
-    protected BigDecimal calculateChargeForTimeInZone(List<ZoneBoundaryCrossing> crossings, BigDecimal CHARGE_RATE_POUNDS_PER_MINUTE) {
+    protected BigDecimal calculateChargeForTimeInZone(List<ZoneBoundaryCrossing> crossings) {
 
         BigDecimal charge = new BigDecimal(0);
 
@@ -60,7 +60,7 @@ public class Calculator {
         ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
         crossings.add(entry);
         crossings.add(exit);
-        return calculateChargeForTimeInZone(crossings , congestionChargeSystem.getChargeRatePoundsPerMinute());
-    }
+        return calculateChargeForTimeInZone(crossings);
+    } //used in tests
 
 }

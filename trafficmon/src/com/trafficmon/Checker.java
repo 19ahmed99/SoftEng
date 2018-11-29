@@ -3,24 +3,15 @@ package com.trafficmon;
 import java.util.List;
 
 public class Checker {
-    private final CongestionChargeSystem congestionChargeSystem;
 
-    public Checker(CongestionChargeSystem congestionChargeSystem) {
-        this.congestionChargeSystem = congestionChargeSystem;
-    }
-
-    boolean previouslyRegistered(Vehicle vehicle) {
-        for (ZoneBoundaryCrossing crossing : congestionChargeSystem.getEventLog()) {
+    public boolean previouslyRegistered(Vehicle vehicle, List<ZoneBoundaryCrossing> eventLog) {
+        for (ZoneBoundaryCrossing crossing : eventLog) {
             if (crossing.getVehicle().equals(vehicle)) {
                 return true;
             }
         }
         return false;
     }
-
-    public boolean checkIfRegistered(Vehicle vehicle) {
-        return previouslyRegistered(vehicle);
-    }//my own method}
 
     protected boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
 
