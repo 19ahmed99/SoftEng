@@ -11,23 +11,23 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/trafficmon$CongestionChargeSystemTest_carGoesInAndOutCheckCharge.coverage" NAME="CongestionChargeSystemTest.carGoesInAndOutCheckCharge Coverage Results" MODIFIED="1543075499275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/trafficmon$VehicleTest.coverage" NAME="VehicleTest Coverage Results" MODIFIED="1543362711600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.trafficmon.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/trafficmon$VehicleTest_checkToString.coverage" NAME="VehicleTest.checkToString Coverage Results" MODIFIED="1543088683746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.trafficmon.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/trafficmon$VehicleTest.coverage" NAME="VehicleTest Coverage Results" MODIFIED="1543362711600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.trafficmon.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/trafficmon$All_in_trafficmon.coverage" NAME="All in trafficmon Coverage Results" MODIFIED="1543407909142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/trafficmon$Example2.coverage" NAME="Example2 Coverage Results" MODIFIED="1542653112295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.trafficmon.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/trafficmon$CongestionChargeSystemTest.coverage" NAME="CongestionChargeSystemTest Coverage Results" MODIFIED="1543255675561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.trafficmon.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/trafficmon$CongestionChargeSystemTest_Version2.coverage" NAME="CongestionChargeSystemTest_Version2 Coverage Results" MODIFIED="1543362448647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.trafficmon.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/trafficmon$CongestionChargeSystemTest.coverage" NAME="CongestionChargeSystemTest Coverage Results" MODIFIED="1543255675561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/trafficmon$CongestionChargeSystemTest_carGoesInAndOutCheckCharge.coverage" NAME="CongestionChargeSystemTest.carGoesInAndOutCheckCharge Coverage Results" MODIFIED="1543075499275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.trafficmon.*</FILTER>
     </SUITE>
   </component>
@@ -35,7 +35,53 @@
     <option name="myAddOrReplace" value="1" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file leaf-file-name="CongestionChargeSystem.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/trafficmon/CongestionChargeSystem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+              <folding>
+                <element signature="method#CongestionChargeSystem#0;class#CongestionChargeSystem#0" expanded="false" />
+                <element signature="method#CongestionChargeSystem#1;class#CongestionChargeSystem#0" expanded="false" />
+                <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
+                <element signature="method#generateHashMap#0;class#CongestionChargeSystem#0" expanded="false" />
+                <element signature="e#1333#1370#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Checker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Checker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="13" column="5" lean-forward="false" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+              <folding>
+                <element signature="method#previouslyRegistered#0;class#Checker#0" expanded="false" />
+                <element signature="method#checkOrderingOf#0;class#Checker#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Calculator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Calculator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="8" column="57" lean-forward="true" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
+              <folding>
+                <element signature="method#Calculator#0;class#Calculator#0" expanded="false" />
+                <element signature="method#calculateCharges#0;class#Calculator#0" expanded="false" />
+                <element signature="method#calculateChargeForTimeInZone#0;class#Calculator#0" expanded="false" />
+                <element signature="method#minutesBetween#0;class#Calculator#0" expanded="false" />
+                <element signature="method#getCalculatedCharge#0;class#Calculator#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -45,6 +91,13 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>previouslyRegistered</find>
+      <find>getSizeofEventLog</find>
+      <find>previo</find>
+    </findStrings>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -59,13 +112,15 @@
         <option value="$PROJECT_DIR$/src/com/trafficmon/OperationsTeamSystem.java" />
         <option value="$PROJECT_DIR$/test/com/trafficmon/CongestionChargeSystemTest_Version2.java" />
         <option value="$PROJECT_DIR$/src/com/trafficmon/Example.java" />
-        <option value="$PROJECT_DIR$/src/com/trafficmon/CongestionChargeSystem.java" />
         <option value="$PROJECT_DIR$/src/com/trafficmon/EntryEvent.java" />
         <option value="$PROJECT_DIR$/src/com/trafficmon/ExitEvent.java" />
         <option value="$PROJECT_DIR$/src/com/trafficmon/Vehicle.java" />
         <option value="$PROJECT_DIR$/src/com/trafficmon/ZoneBoundaryCrossing.java" />
         <option value="$PROJECT_DIR$/test/com/trafficmon/VehicleTest.java" />
         <option value="$PROJECT_DIR$/test/com/trafficmon/CongestionChargeSystemTest.java" />
+        <option value="$PROJECT_DIR$/src/com/trafficmon/Checker.java" />
+        <option value="$PROJECT_DIR$/src/com/trafficmon/CongestionChargeSystem.java" />
+        <option value="$PROJECT_DIR$/src/com/trafficmon/Calculator.java" />
       </list>
     </option>
   </component>
@@ -75,11 +130,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="62" />
-    <option name="y" value="-21" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -96,16 +149,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="trafficmon" type="b2602c69:ProjectViewProjectNode" />
               <item name="trafficmon" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trafficmon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trafficmon" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="trafficmon" type="b2602c69:ProjectViewProjectNode" />
@@ -133,6 +187,10 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -144,6 +202,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -179,46 +238,6 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.All in trafficmon">
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
-    </configuration>
-    <configuration name="Example" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.trafficmon.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.trafficmon.Example" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="trafficmon" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
     <configuration name="All in trafficmon" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="trafficmon" />
@@ -289,6 +308,25 @@
       <envs />
       <patterns />
     </configuration>
+    <configuration name="Example" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.trafficmon.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.trafficmon.Example" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="trafficmon" />
+      <envs />
+    </configuration>
     <configuration name="VehicleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -314,6 +352,27 @@
       <envs />
       <patterns />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -333,6 +392,12 @@
       </option>
       <envs />
       <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
@@ -367,12 +432,6 @@
       <envs />
       <properties />
       <listeners />
-    </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.CongestionChargeSystemTest.checkPenaltyNoticeIssuedForInsufficientFunds" />
@@ -412,23 +471,23 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_trafficmon - 2018.11.27 at 23h 59m 53s.xml">
+    <history-entry file="All_in_trafficmon - 2018.11.29 at 14h 40m 37s.xml">
       <configuration name="All in trafficmon" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_trafficmon - 2018.11.28 at 12h 18m 17s.xml">
+    <history-entry file="All_in_trafficmon - 2018.11.29 at 15h 04m 29s.xml">
       <configuration name="All in trafficmon" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_trafficmon - 2018.11.28 at 12h 19m 18s.xml">
+    <history-entry file="All_in_trafficmon - 2018.11.29 at 15h 53m 16s.xml">
       <configuration name="All in trafficmon" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_trafficmon - 2018.11.28 at 12h 24m 31s.xml">
+    <history-entry file="All_in_trafficmon - 2018.11.29 at 15h 55m 33s.xml">
       <configuration name="All in trafficmon" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_trafficmon - 2018.11.28 at 12h 25m 11s.xml">
+    <history-entry file="All_in_trafficmon - 2018.11.29 at 15h 57m 03s.xml">
       <configuration name="All in trafficmon" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CongestionChargeSystemTest_Version2 - 2018.11.27 at 23h 47m 29s.xml">
-      <configuration name="CongestionChargeSystemTest_Version2" configurationId="JUnit" />
+    <history-entry file="All_in_trafficmon - 2018.11.29 at 16h 24m 29s.xml">
+      <configuration name="All in trafficmon" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CongestionChargeSystemTest_Version2_checkPenaltyNoticeIssuedForInsufficientFunds - 2018.11.27 at 23h 46m 52s.xml">
       <configuration name="CongestionChargeSystemTest_Version2.checkPenaltyNoticeIssuedForInsufficientFunds" configurationId="JUnit" />
@@ -447,37 +506,87 @@
     <option name="totallyTimeSpent" value="10902000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25572917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22603719" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282967" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25894135" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282967" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25894135" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-    </layout>
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -492,43 +601,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="16" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/CongestionChargeSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateChargeForTimeInZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#previouslyRegistered#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#checkOrderingOf#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#minutesBetween#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#getCalculatedCharge#0;class#CongestionChargeSystem#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/CongestionChargeSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="920">
-          <caret line="51" column="71" lean-forward="true" selection-start-line="51" selection-start-column="71" selection-end-line="51" selection-end-column="71" />
-          <folding>
-            <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateChargeForTimeInZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#previouslyRegistered#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#checkOrderingOf#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#minutesBetween#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#getCalculatedCharge#0;class#CongestionChargeSystem#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/trafficmon-externals.jar!/com/trafficmon/PenaltiesService.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -540,19 +617,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="21" column="77" lean-forward="true" selection-start-line="21" selection-start-column="77" selection-end-line="21" selection-end-column="77" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -560,19 +625,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3105">
           <caret line="135" column="10" lean-forward="true" selection-start-line="135" selection-start-column="10" selection-end-line="135" selection-end-column="10" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -583,13 +636,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
           <folding>
+            <element signature="method#CongestionChargeSystem#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#CongestionChargeSystem#1;class#CongestionChargeSystem#0" expanded="false" />
             <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateChargeForTimeInZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#previouslyRegistered#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#checkOrderingOf#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#minutesBetween#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#getCalculatedCharge#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#generateHashMap#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="e#1333#1370#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -598,9 +649,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding>
-            <element signature="method#ZoneBoundaryCrossing#0;class#ZoneBoundaryCrossing#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -616,19 +664,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -637,13 +673,11 @@
         <state relative-caret-position="1380">
           <caret line="63" column="85" lean-forward="true" selection-start-line="63" selection-start-column="85" selection-end-line="63" selection-end-column="85" />
           <folding>
+            <element signature="method#CongestionChargeSystem#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#CongestionChargeSystem#1;class#CongestionChargeSystem#0" expanded="false" />
             <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateChargeForTimeInZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#previouslyRegistered#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#checkOrderingOf#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#minutesBetween#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#getCalculatedCharge#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#generateHashMap#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="e#1333#1370#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -652,19 +686,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -674,13 +696,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="method#CongestionChargeSystem#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#CongestionChargeSystem#1;class#CongestionChargeSystem#0" expanded="false" />
             <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateChargeForTimeInZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#previouslyRegistered#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#checkOrderingOf#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#minutesBetween#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#getCalculatedCharge#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#generateHashMap#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="e#1333#1370#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -689,19 +709,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="49" column="23" lean-forward="false" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -710,13 +718,11 @@
         <state relative-caret-position="600">
           <caret line="48" column="85" lean-forward="true" selection-start-line="48" selection-start-column="85" selection-end-line="48" selection-end-column="85" />
           <folding>
+            <element signature="method#CongestionChargeSystem#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#CongestionChargeSystem#1;class#CongestionChargeSystem#0" expanded="false" />
             <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateChargeForTimeInZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#previouslyRegistered#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#checkOrderingOf#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#minutesBetween#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#getCalculatedCharge#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#generateHashMap#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="e#1333#1370#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -725,19 +731,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -746,19 +740,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="49" column="118" lean-forward="false" selection-start-line="49" selection-start-column="118" selection-end-line="49" selection-end-column="118" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -766,19 +748,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -794,19 +764,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" column="89" lean-forward="false" selection-start-line="23" selection-start-column="89" selection-end-line="23" selection-end-column="89" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -822,13 +780,11 @@
         <state relative-caret-position="510">
           <caret line="40" column="79" lean-forward="true" selection-start-line="40" selection-start-column="79" selection-end-line="40" selection-end-column="79" />
           <folding>
+            <element signature="method#CongestionChargeSystem#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#CongestionChargeSystem#1;class#CongestionChargeSystem#0" expanded="false" />
             <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateChargeForTimeInZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#previouslyRegistered#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#checkOrderingOf#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#minutesBetween#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#getCalculatedCharge#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#generateHashMap#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="e#1333#1370#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -837,19 +793,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -859,13 +803,11 @@
         <state relative-caret-position="600">
           <caret line="46" column="92" lean-forward="true" selection-start-line="46" selection-start-column="92" selection-end-line="46" selection-end-column="92" />
           <folding>
+            <element signature="method#CongestionChargeSystem#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#CongestionChargeSystem#1;class#CongestionChargeSystem#0" expanded="false" />
             <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateChargeForTimeInZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#previouslyRegistered#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#checkOrderingOf#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#minutesBetween#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#getCalculatedCharge#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#generateHashMap#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="e#1333#1370#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -874,19 +816,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -895,13 +825,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="method#CongestionChargeSystem#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#CongestionChargeSystem#1;class#CongestionChargeSystem#0" expanded="false" />
             <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateChargeForTimeInZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#previouslyRegistered#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#checkOrderingOf#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#minutesBetween#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#getCalculatedCharge#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#generateHashMap#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="e#1333#1370#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -963,26 +891,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
           <caret line="184" column="5" lean-forward="true" selection-start-line="184" selection-start-column="5" selection-end-line="184" selection-end-column="5" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1007,67 +915,74 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding>
-            <element signature="method#equals#0;class#Vehicle#0" expanded="false" />
-            <element signature="method#hashCode#0;class#Vehicle#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/trafficmon/ZoneBoundaryCrossing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-          <folding>
-            <element signature="method#ZoneBoundaryCrossing#0;class#ZoneBoundaryCrossing#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/com/trafficmon/VehicleTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
+        <state relative-caret-position="435">
           <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding>
-            <element signature="method#checkToString#0;class#VehicleTest#0" expanded="false" />
-            <element signature="method#checkEqualsMethod#0;class#VehicleTest#0" expanded="false" />
-            <element signature="method#checkHashCode#0;class#VehicleTest#0" expanded="false" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Example.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/com/trafficmon/CongestionChargeSystemTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="23" column="78" lean-forward="true" selection-start-line="23" selection-start-column="78" selection-end-line="23" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Checker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="13" column="5" lean-forward="false" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
           <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckRespectiveCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForInsufficientFunds#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#previouslyRegistered#0;class#Checker#0" expanded="false" />
+            <element signature="method#checkOrderingOf#0;class#Checker#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Calculator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="8" column="57" lean-forward="true" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
+          <folding>
+            <element signature="method#Calculator#0;class#Calculator#0" expanded="false" />
+            <element signature="method#calculateCharges#0;class#Calculator#0" expanded="false" />
+            <element signature="method#calculateChargeForTimeInZone#0;class#Calculator#0" expanded="false" />
+            <element signature="method#minutesBetween#0;class#Calculator#0" expanded="false" />
+            <element signature="method#getCalculatedCharge#0;class#Calculator#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/trafficmon/CongestionChargeSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="103" column="31" lean-forward="false" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
+        <state relative-caret-position="313">
+          <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
           <folding>
+            <element signature="method#CongestionChargeSystem#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#CongestionChargeSystem#1;class#CongestionChargeSystem#0" expanded="false" />
             <element signature="method#vehicleLeavingZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#calculateChargeForTimeInZone#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#previouslyRegistered#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#checkOrderingOf#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#minutesBetween#0;class#CongestionChargeSystem#0" expanded="false" />
-            <element signature="method#getCalculatedCharge#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="method#generateHashMap#0;class#CongestionChargeSystem#0" expanded="false" />
+            <element signature="e#1333#1370#0" expanded="true" />
           </folding>
         </state>
       </provider>
