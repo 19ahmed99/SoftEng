@@ -36,7 +36,7 @@ public class CongestionChargeSystem {
     }
 
     private Map<Vehicle, List<ZoneBoundaryCrossing>> generateHashMap() { //we made this method
-        Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<Vehicle, List<ZoneBoundaryCrossing>>();
+        Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<>();
         //hashmap: (key,value) = (Vehicle object, arraylist of their entry and exits , starts off empty
 
         for (ZoneBoundaryCrossing crossing : eventLog) {
@@ -50,7 +50,7 @@ public class CongestionChargeSystem {
         return crossingsByVehicle;
     }
 
-    public List<ZoneBoundaryCrossing> getEventLog() {
+    List<ZoneBoundaryCrossing> getEventLog() {
         return eventLog;
     }
 }

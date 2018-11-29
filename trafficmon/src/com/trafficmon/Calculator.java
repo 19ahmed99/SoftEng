@@ -15,7 +15,7 @@ public class Calculator {
     }
 
 
-    public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
+    void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
 
         for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
             Vehicle vehicle = vehicleCrossings.getKey();
@@ -57,7 +57,7 @@ public class Calculator {
         return charge;
     }
 
-    public BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit){
+    BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit){
         ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
         crossings.add(entry);
         crossings.add(exit);
