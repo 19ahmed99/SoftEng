@@ -6,14 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Calculator {
-    private Checker checker;
+    private Checker checker = new Checker();
     private PenaltiesService operationsTeam;
 
-    Calculator(Checker checker, PenaltiesService operationsTeam) {
-        this.checker = checker;
+    Calculator(PenaltiesService operationsTeam) {
         this.operationsTeam = operationsTeam;
     }
-
 
     void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
 
@@ -56,6 +54,8 @@ public class Calculator {
         }
         return charge;
     }
+
+    // ----- Test Methods -----
 
     BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit){
         ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();

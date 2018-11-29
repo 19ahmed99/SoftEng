@@ -9,16 +9,15 @@ public class CongestionChargeSystem {
     private final Checker checker;
     private PenaltiesService operationsTeam;
 
-
     CongestionChargeSystem() {
         this.operationsTeam = OperationsTeam.getInstance();
         this.checker = new Checker();
-        this.calculator = new Calculator(checker,operationsTeam);
+        this.calculator = new Calculator(operationsTeam);
     }
     CongestionChargeSystem(PenaltiesService operationsTeam) {
         this.operationsTeam = operationsTeam;
         this.checker = new Checker();
-        this.calculator = new Calculator(checker,operationsTeam);
+        this.calculator = new Calculator(operationsTeam);
     }
 
     public void vehicleEnteringZone(Vehicle vehicle) { //Vehicle Entry
@@ -41,7 +40,7 @@ public class CongestionChargeSystem {
 
         for (ZoneBoundaryCrossing crossing : eventLog) {
             if (!crossingsByVehicle.containsKey(crossing.getVehicle())) {
-                crossingsByVehicle.put(crossing.getVehicle(), new ArrayList<ZoneBoundaryCrossing>());
+                crossingsByVehicle.put(crossing.getVehicle(), new ArrayList<>());
             }
             crossingsByVehicle.get(crossing.getVehicle()).add(crossing);
         }
@@ -49,6 +48,8 @@ public class CongestionChargeSystem {
         //if its not already in the hashmap, create the new entry and add the event to its arraylist
         return crossingsByVehicle;
     }
+
+    // ----- Test Method -----
 
     List<ZoneBoundaryCrossing> getEventLog() {
         return eventLog;

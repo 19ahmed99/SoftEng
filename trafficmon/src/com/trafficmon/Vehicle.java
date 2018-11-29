@@ -33,6 +33,8 @@ public class Vehicle {
         else return registration.hashCode();
     }
 
+    // ----- Test Methods -----
+
     public String getRegistration() {
         return registration;
     }

@@ -21,7 +21,7 @@ public class CongestionChargeSystemTest {
     private PenaltiesService penaltiesService = context.mock(PenaltiesService.class);
     private CongestionChargeSystem system = new CongestionChargeSystem(penaltiesService);
     private Checker checker = new Checker();
-    private Calculator calculator = new Calculator(checker, penaltiesService);
+    private Calculator calculator = new Calculator(penaltiesService);
 
 
     @Test
