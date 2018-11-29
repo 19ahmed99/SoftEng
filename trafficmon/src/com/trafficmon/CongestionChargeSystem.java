@@ -1,10 +1,8 @@
 package com.trafficmon;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 public class CongestionChargeSystem {
-
 
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<>();
     private final Calculator calculator;
@@ -55,7 +53,4 @@ public class CongestionChargeSystem {
     public List<ZoneBoundaryCrossing> getEventLog() {
         return eventLog;
     }
-
-
-
 }

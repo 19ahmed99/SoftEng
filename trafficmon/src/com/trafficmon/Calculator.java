@@ -6,15 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Calculator {
-    private static final BigDecimal CHARGE_RATE_POUNDS_PER_MINUTE = new BigDecimal(0.05);
     private Checker checker;
     private PenaltiesService operationsTeam;
-
 
     Calculator(Checker checker, PenaltiesService operationsTeam) {
         this.checker = checker;
         this.operationsTeam = operationsTeam;
     }
+
 
     public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
 
@@ -26,41 +25,43 @@ public class Calculator {
             if (!checker.checkOrderingOf(crossings)) {
                 operationsTeam.triggerInvestigationInto(vehicle); //if ordering is messed up, then investigate
             } else {
-                BigDecimal charge = calculateChargeForTimeInZone(crossings); //calculate the charge
+                BigDecimal charge = getCharge(crossings);
                 try {
                     RegisteredCustomerAccountsService.getInstance().accountFor(vehicle).deduct(charge);
                 } catch (InsufficientCreditException | AccountNotRegisteredException ice) {
-                    operationsTeam.issuePenaltyNotice(vehicle, charge);
-                }
+                    operationsTeam.issuePenaltyNotice(vehicle, charge); }
             }
         }
     }
 
-    protected BigDecimal calculateChargeForTimeInZone(List<ZoneBoundaryCrossing> crossings) {
-
-        BigDecimal charge = new BigDecimal(0);
-
+    private BigDecimal getCharge(List<ZoneBoundaryCrossing> crossings) {
+        BigDecimal charge;
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
+        int timeIn = 0;
 
+        if (lastEvent.timestamp() <= 50400) { //It is 2pm
+            charge = new BigDecimal(6);
+        } else {
+            charge = new BigDecimal(4);
+        }
         for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
-
             if (crossing instanceof ExitEvent) {
-                charge = charge.add(new BigDecimal(minutesBetween(lastEvent.timestamp(), crossing.timestamp())).multiply(CHARGE_RATE_POUNDS_PER_MINUTE));
+                  timeIn += crossing.timestamp()-lastEvent.timestamp();
+            }
+            if (timeIn > 14400) { //14400 is 4h
+                charge = new BigDecimal(12);
+                break;
             }
             lastEvent = crossing;
         }
         return charge;
     }
 
-    private int minutesBetween(long startTimeMs, long endTimeMs) {
-        return (int) Math.ceil((endTimeMs - startTimeMs) / (1000.0 * 60.0));
-    }
-
     public BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit){
         ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
         crossings.add(entry);
         crossings.add(exit);
-        return calculateChargeForTimeInZone(crossings);
-    } //used in tests
 
+        return getCharge(crossings);
+    }
 }

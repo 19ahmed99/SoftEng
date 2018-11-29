@@ -14,7 +14,6 @@ public class Checker {
     }
 
     protected boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
-
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
         for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
             if ((crossing.timestamp() < lastEvent.timestamp()) || (crossing instanceof EntryEvent && lastEvent instanceof EntryEvent) || (crossing instanceof ExitEvent && lastEvent instanceof ExitEvent)) {
@@ -24,5 +23,4 @@ public class Checker {
         }
         return true;
     }
-
 }
