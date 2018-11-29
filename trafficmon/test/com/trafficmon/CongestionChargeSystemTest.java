@@ -20,6 +20,8 @@ public class CongestionChargeSystemTest {
 
     private PenaltiesService penaltiesService = context.mock(PenaltiesService.class);
     private CongestionChargeSystem system = new CongestionChargeSystem(penaltiesService);
+    private Calculator calculator = new Calculator(system);
+    private Checker checker = new Checker(system);
 
     @Test
     public void carGoesInAndOutCheckEventLogSize() {
@@ -32,7 +34,7 @@ public class CongestionChargeSystemTest {
          * */
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
-        assertThat(system.getSizeofEventLog(), is(2));
+        assertThat(system.getEventLog().size(), is(2));
     }
 
     @Test
@@ -45,10 +47,10 @@ public class CongestionChargeSystemTest {
          */
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
-        assertTrue(system.getEventLogEntries(0).getVehicle().equals(Vehicle.withRegistration("A123 XYZ")));
-        assertTrue(system.getEventLogEntries(1).getVehicle().equals(Vehicle.withRegistration("A123 XYZ")));
-        assertTrue(system.getEventLogEntries(0) instanceof EntryEvent);
-        assertTrue(system.getEventLogEntries(1) instanceof ExitEvent);
+        assertTrue(system.getEventLog().get(0).getVehicle().equals(Vehicle.withRegistration("A123 XYZ")));
+        assertTrue(system.getEventLog().get(1).getVehicle().equals(Vehicle.withRegistration("A123 XYZ")));
+        assertTrue(system.getEventLog().get(0) instanceof EntryEvent);
+        assertTrue(system.getEventLog().get(1) instanceof ExitEvent);
     }
 
     @Test
@@ -60,10 +62,10 @@ public class CongestionChargeSystemTest {
          * we calculate the charge for these two events and assert that it is indeed 0.85 - a value which we previously calculated
          */
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
-        system.getEventLogEntries(0).setTimeStamp(1000000);
+        system.getEventLog().get(0).setTimeStamp(1000000);
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
-        system.getEventLogEntries(1).setTimeStamp(2000000);
-        BigDecimal our_value = system.getCalculatedCharge(system.getEventLogEntries(0), system.getEventLogEntries(1));
+        system.getEventLog().get(1).setTimeStamp(2000000);
+        BigDecimal our_value = calculator.getCalculatedCharge(system.getEventLog().get(0), system.getEventLog().get(1));
         MathContext mc = new MathContext(2);
         assertThat(our_value.round(mc), is((new BigDecimal(0.85)).round(mc)));
     }
@@ -71,15 +73,15 @@ public class CongestionChargeSystemTest {
     @Test
     public void twoCarsGoInAndOutCheckRespectiveCharges() {
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
-        system.getEventLogEntries(0).setTimeStamp(1000000); //it enters at time 1000
+        system.getEventLog().get(0).setTimeStamp(1000000); //it enters at time 1000
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 ABC"));
-        system.getEventLogEntries(1).setTimeStamp(1500000); //it enters at time 1000
+        system.getEventLog().get(1).setTimeStamp(1500000); //it enters at time 1000
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
-        system.getEventLogEntries(2).setTimeStamp(2000000);
+        system.getEventLog().get(2).setTimeStamp(2000000);
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 ABC"));
-        system.getEventLogEntries(3).setTimeStamp(3000000); //it enters at time 1000
-        BigDecimal first_car = system.getCalculatedCharge(system.getEventLogEntries(0), system.getEventLogEntries(2));
-        BigDecimal second_car = system.getCalculatedCharge(system.getEventLogEntries(1), system.getEventLogEntries(3));
+        system.getEventLog().get(3).setTimeStamp(3000000); //it enters at time 1000
+        BigDecimal first_car = calculator.getCalculatedCharge(system.getEventLog().get(0), system.getEventLog().get(2));
+        BigDecimal second_car = calculator.getCalculatedCharge(system.getEventLog().get(1), system.getEventLog().get(3));
         MathContext mc = new MathContext(2);
         assertThat(first_car.round(mc), is((new BigDecimal(0.85)).round(mc)));
         assertThat(second_car.round(mc), is((new BigDecimal(1.25)).round(mc)));
@@ -95,9 +97,9 @@ public class CongestionChargeSystemTest {
         crossings.add((new EntryEvent(Vehicle.withRegistration("A123 XYZ")))); //adding an entry
         crossings.add((new ExitEvent(Vehicle.withRegistration("A123 XYZ"))));//adding an exit
         crossings.get(1).setTimeStamp(crossings.get(0).timestamp() - 1); //making the second event have a smaller timestamp than the first
-        assertFalse(system.checkOrderingOfCrossings(crossings));
+        assertFalse(checker.checkOrderingOf(crossings));
         crossings.get(1).setTimeStamp(crossings.get(0).timestamp() + 1);
-        assertTrue(system.checkOrderingOfCrossings(crossings));
+        assertTrue(checker.checkOrderingOf(crossings));
 
     }
 
@@ -110,7 +112,7 @@ public class CongestionChargeSystemTest {
         final List<ZoneBoundaryCrossing> crossings = new ArrayList<>();
         crossings.add((new EntryEvent(Vehicle.withRegistration("A123 XYZ")))); //adding an entry
         crossings.add((new EntryEvent(Vehicle.withRegistration("A123 ABC"))));//adding an entry
-        assertFalse(system.checkOrderingOfCrossings(crossings));
+        assertFalse(checker.checkOrderingOf(crossings));
     }
 
     @Test
@@ -122,7 +124,7 @@ public class CongestionChargeSystemTest {
         final List<ZoneBoundaryCrossing> crossings = new ArrayList<>();
         crossings.add((new ExitEvent(Vehicle.withRegistration("A123 XYZ")))); //adding an exit
         crossings.add((new ExitEvent(Vehicle.withRegistration("A123 ABC"))));//adding an exit
-        assertFalse(system.checkOrderingOfCrossings(crossings));
+        assertFalse(checker.checkOrderingOf(crossings));
     }
 
     @Test
@@ -132,8 +134,8 @@ public class CongestionChargeSystemTest {
         }});
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
-        system.getEventLogEntries(0).setTimeStamp(2000000); //it enters at time 1000
-        system.getEventLogEntries(1).setTimeStamp(1000000); //it enters at time 1000
+        system.getEventLog().get(0).setTimeStamp(2000000); //it enters at time 1000
+        system.getEventLog().get(1).setTimeStamp(1000000); //it enters at time 1000
         system.calculateCharges();
     }
 
@@ -142,17 +144,17 @@ public class CongestionChargeSystemTest {
 
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
-        system.getEventLogEntries(0).setTimeStamp(1000000); //it enters at time 1000
-        system.getEventLogEntries(1).setTimeStamp(1000000000); //it enters at time 1000
-        BigDecimal expected_value = system.getCalculatedCharge(system.getEventLogEntries(0), system.getEventLogEntries(1));
+        system.getEventLog().get(0).setTimeStamp(1000000); //it enters at time 1000
+        system.getEventLog().get(1).setTimeStamp(1000000000); //it enters at time 1000
+        BigDecimal expected_value = calculator.getCalculatedCharge(system.getEventLog().get(0), system.getEventLog().get(1));
 
         context.checking(new Expectations() {{
             exactly(1).of(penaltiesService).issuePenaltyNotice(Vehicle.withRegistration("A123 XYZ"), expected_value);
         }});
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
-        system.getEventLogEntries(0).setTimeStamp(1000000); //it enters at time 1000
-        system.getEventLogEntries(1).setTimeStamp(1000000000); //it enters at time 1000
+        system.getEventLog().get(0).setTimeStamp(1000000); //it enters at time 1000
+        system.getEventLog().get(1).setTimeStamp(1000000000); //it enters at time 1000
         system.calculateCharges();
     }
 
@@ -160,9 +162,9 @@ public class CongestionChargeSystemTest {
     public void checkPreviouslyRegistered(){
         //Create an entry event for the car
         //Check that it's registered after
-        assertFalse(system.checkIfRegistered(Vehicle.withRegistration("A123 ABC")));
+        assertFalse(checker.checkIfRegistered(Vehicle.withRegistration("A123 ABC")));
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 ABC"));
-        assertTrue(system.checkIfRegistered(Vehicle.withRegistration("A123 ABC")));
+        assertTrue(checker.checkIfRegistered(Vehicle.withRegistration("A123 ABC")));
     }
 
     @Test
@@ -170,7 +172,7 @@ public class CongestionChargeSystemTest {
         // Create an exit event for the car
         // Check that it's not registered
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
-        assertThat(system.getSizeofEventLog(), is(0));
-        assertFalse(system.checkIfRegistered(Vehicle.withRegistration("A123 XYZ")));
+        assertThat(system.getEventLog().size(), is(0));
+        assertFalse(checker.checkIfRegistered(Vehicle.withRegistration("A123 XYZ")));
     }
 }

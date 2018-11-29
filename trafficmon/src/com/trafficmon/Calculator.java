@@ -8,9 +8,12 @@ import java.util.Map;
 
 public class Calculator {
     private final CongestionChargeSystem congestionChargeSystem;
+    private Checker checker;
+
 
     Calculator(CongestionChargeSystem congestionChargeSystem) {
         this.congestionChargeSystem = congestionChargeSystem;
+        this.checker = new Checker(congestionChargeSystem);
     }
 
     public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle,BigDecimal CHARGE_RATE_POUNDS_PER_MINUTE) {
@@ -20,7 +23,7 @@ public class Calculator {
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
             //loop through the hashmap and set "vehicle" to the key and "crossings" to the arraylist
 
-            if (!congestionChargeSystem.checkOrderingOf(crossings)) {
+            if (!checker.checkOrderingOf(crossings)) {
                 congestionChargeSystem.getOperationsTeam().triggerInvestigationInto(vehicle); //if ordering is messed up, then investigate
             } else {
                 BigDecimal charge = calculateChargeForTimeInZone(crossings, CHARGE_RATE_POUNDS_PER_MINUTE); //calculate the charge
@@ -52,4 +55,12 @@ public class Calculator {
     private int minutesBetween(long startTimeMs, long endTimeMs) {
         return (int) Math.ceil((endTimeMs - startTimeMs) / (1000.0 * 60.0));
     }
+
+    public BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit){
+        ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
+        crossings.add(entry);
+        crossings.add(exit);
+        return calculateChargeForTimeInZone(crossings , congestionChargeSystem.getChargeRatePoundsPerMinute());
+    }
+
 }
