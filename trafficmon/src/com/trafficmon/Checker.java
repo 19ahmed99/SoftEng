@@ -21,8 +21,11 @@ public class Checker implements Checking{
         //   - Two exits in a row
 
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
-        for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
-            if ((crossing.timestamp() < lastEvent.timestamp()) || (crossing instanceof EntryEvent && lastEvent instanceof EntryEvent) || (crossing instanceof ExitEvent && lastEvent instanceof ExitEvent)) {
+        List<ZoneBoundaryCrossing> crossings_after_first = crossings.subList(1, crossings.size());
+        for (ZoneBoundaryCrossing crossing : crossings_after_first) {
+            boolean timeStamp_Error = crossing.timestamp() < lastEvent.timestamp();
+            boolean doubleSameEvent = (crossing.getClass() == lastEvent.getClass());
+            if (timeStamp_Error || doubleSameEvent) {
                 return false;
             }
             lastEvent = crossing;

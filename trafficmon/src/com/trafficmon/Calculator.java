@@ -49,13 +49,16 @@ public class Calculator implements  Calculating{
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
         int timeIn = 0;
 
+
         if (lastEvent.timestamp() < 50400) { // If the first entry is before 2pm
             charge = new BigDecimal(6);
         } else {
             charge = new BigDecimal(4);
         }
         // Go through the events, adding the time spent is zone to timeIn
-        for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
+
+        List<ZoneBoundaryCrossing> crossings_sublist = crossings.subList(1, crossings.size());
+        for (ZoneBoundaryCrossing crossing : crossings_sublist) {
             if (crossing instanceof ExitEvent) {
                   timeIn += crossing.timestamp()-lastEvent.timestamp(); //adding the time between the entry and exit to the timeIn
             }
