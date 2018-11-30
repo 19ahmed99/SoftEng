@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Calculator implements  Calculating{
     private Checker checker = new Checker();
     private PenaltiesService operationsTeam;
+    private AccountsService accountsService;
 
     Calculator(PenaltiesService operationsTeam) {
         // Constructor that takes the operations team
@@ -17,19 +19,22 @@ public class Calculator implements  Calculating{
     public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
         // Main method to calculate charges for each vehicle
 
-        for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
+        final Set<Map.Entry<Vehicle, List<ZoneBoundaryCrossing>>> entries_in_hashMap = crossingsByVehicle.entrySet();
+        for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : entries_in_hashMap) {
             // Loop through the hash map
 
             // Sets "vehicle" to the key and "crossings" to the value
-            Vehicle vehicle = vehicleCrossings.getKey();
+            Vehicle vehicle = vehicleCrossings.getKey(); //this gets the current vehicle you are on
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
 
-            if (!checker.checkOrderingOf(crossings)) { // If ordering is messed up
+            boolean ordering_correct = checker.checkOrderingOf(crossings);
+            if (!ordering_correct) {
                 operationsTeam.triggerInvestigationInto(vehicle);
             } else {
                 BigDecimal charge = getCharge(crossings); // Get the charge for this vehicle
                 try {
-                    RegisteredCustomerAccountsService.getInstance().accountFor(vehicle).deduct(charge);
+                    accountsService = RegisteredCustomerAccountsService.getInstance();
+                    accountsService.accountFor(vehicle).deduct(charge);
                 } catch (InsufficientCreditException | AccountNotRegisteredException ice) { // If the person has not enough credit or isn't registered
                     operationsTeam.issuePenaltyNotice(vehicle, charge);
                 }
