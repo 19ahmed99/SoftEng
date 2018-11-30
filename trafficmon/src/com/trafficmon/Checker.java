@@ -2,7 +2,7 @@ package com.trafficmon;
 
 import java.util.List;
 
-public class Checker {
+public class Checker implements Checking{
 
     public boolean previouslyRegistered(Vehicle vehicle, List<ZoneBoundaryCrossing> eventLog) {
         // Checks if the vehicle is already in the event log
@@ -14,8 +14,7 @@ public class Checker {
         }
         return false;
     }
-
-    protected boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
+    public boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
         // Checks the event log for these problems
         //   - Timestamps not ordered
         //   - Two entries in a row

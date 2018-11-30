@@ -2,7 +2,7 @@ package com.trafficmon;
 
 import java.util.*;
 
-public class CongestionChargeSystem {
+public class CongestionChargeSystem implements main_system {
 
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<>();
     private final Calculator calculator;
@@ -63,7 +63,7 @@ public class CongestionChargeSystem {
 
     // ----- Test Method -----
 
-    List<ZoneBoundaryCrossing> getEventLog() {
+    public List<ZoneBoundaryCrossing> getEventLog() {
         // Method to get the event log
 
         return eventLog;

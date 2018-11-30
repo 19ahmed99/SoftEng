@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Calculator {
+public class Calculator implements  Calculating{
     private Checker checker = new Checker();
     private PenaltiesService operationsTeam;
 
@@ -14,13 +14,13 @@ public class Calculator {
         this.operationsTeam = operationsTeam;
     }
 
-    void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
+    public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
         // Main method to calculate charges for each vehicle
 
         for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
             // Loop through the hash map
 
-            // Sets "vehicle" to the key and "crossings" to the array list
+            // Sets "vehicle" to the key and "crossings" to the value
             Vehicle vehicle = vehicleCrossings.getKey();
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
 
@@ -52,7 +52,7 @@ public class Calculator {
         // Go through the events, adding the time spent is zone to timeIn
         for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
             if (crossing instanceof ExitEvent) {
-                  timeIn += crossing.timestamp()-lastEvent.timestamp();
+                  timeIn += crossing.timestamp()-lastEvent.timestamp(); //adding the time between the entry and exit to the timeIn
             }
             if (timeIn > 14400) { // If timeIn is more than 4h
                 charge = new BigDecimal(12);
@@ -65,7 +65,7 @@ public class Calculator {
 
     // ----- Test Methods -----
 
-    BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit){
+    public BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit){
         // A test method to calculate the charge for an entry/exit
 
         ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
