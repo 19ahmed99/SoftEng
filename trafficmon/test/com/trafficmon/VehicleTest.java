@@ -9,14 +9,22 @@ import static org.junit.Assert.assertTrue;
 public class VehicleTest {
     @Test
     public void checkToString() {
-        // Check the toString() method in the class Vehicle
+        /*
+         * Test Description
+         * Create a Vehicle
+         * Check the toString() method in the class
+         */
         Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
         assertThat(vehicle.toString(), is("Vehicle [A123 XYZ]"));
     }
 
     @Test
     public void checkEqualsMethod(){
-        // Check the equals() method in the class Vehicle
+        /*
+         * Test Description
+         * Create three Vehicles
+         * Check the equals() method in the class
+         */
         Vehicle vehicle1 = Vehicle.withRegistration("A123 XYZ");
         Vehicle vehicle2 = Vehicle.withRegistration("A123 ABC");
         Vehicle vehicle3 = Vehicle.withRegistration("A123 XYZ");
@@ -28,7 +36,11 @@ public class VehicleTest {
 
     @Test
     public void checkHashCode(){
-        // Check the hashCode() method in the class Vehicle
+        /*
+         * Test Description
+         * Create two Vehicles
+         * Check the hashCode() method in the class
+         */
         Vehicle vehicle1 = Vehicle.withRegistration(null);
         assertTrue(vehicle1.hashCode() == 0);
         Vehicle vehicle2 = Vehicle.withRegistration("A123 XYZ");

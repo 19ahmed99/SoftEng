@@ -24,13 +24,11 @@ public class CongestionChargeSystem implements main_system {
 
     public void vehicleEnteringZone(Vehicle vehicle) {
         // Vehicle entry
-
         eventLog.add(new EntryEvent(vehicle));
     }
 
     public void vehicleLeavingZone(Vehicle vehicle) {
-        // // Vehicle exit
-
+        // Vehicle exit
         if (checker.previouslyRegistered(vehicle, eventLog)){
             eventLog.add(new ExitEvent(vehicle));
         }
@@ -38,7 +36,6 @@ public class CongestionChargeSystem implements main_system {
 
     public void calculateCharges() {
         // Method to calculate charges (calls the Calculator)
-
         calculator.calculateCharges(generateHashMap());
     }
 
@@ -65,7 +62,6 @@ public class CongestionChargeSystem implements main_system {
 
     public List<ZoneBoundaryCrossing> getEventLog() {
         // Method to get the event log
-
         return eventLog;
     }
 }

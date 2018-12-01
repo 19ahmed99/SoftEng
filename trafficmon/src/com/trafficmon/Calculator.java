@@ -14,6 +14,7 @@ public class Calculator implements  Calculating{
     Calculator(PenaltiesService operationsTeam) {
         // Constructor that takes the operations team
         this.operationsTeam = operationsTeam;
+        this.accountsService = RegisteredCustomerAccountsService.getInstance();
     }
 
     public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
@@ -24,7 +25,7 @@ public class Calculator implements  Calculating{
             // Loop through the hash map
 
             // Sets "vehicle" to the key and "crossings" to the value
-            Vehicle vehicle = vehicleCrossings.getKey(); //this gets the current vehicle you are on
+            Vehicle vehicle = vehicleCrossings.getKey(); // This gets the current vehicle you are on
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
 
             boolean ordering_correct = checker.checkOrderingOf(crossings);
@@ -33,7 +34,6 @@ public class Calculator implements  Calculating{
             } else {
                 BigDecimal charge = getCharge(crossings); // Get the charge for this vehicle
                 try {
-                    accountsService = RegisteredCustomerAccountsService.getInstance();
                     accountsService.accountFor(vehicle).deduct(charge);
                 } catch (InsufficientCreditException | AccountNotRegisteredException ice) { // If the person has not enough credit or isn't registered
                     operationsTeam.issuePenaltyNotice(vehicle, charge);
@@ -45,9 +45,9 @@ public class Calculator implements  Calculating{
     private BigDecimal getCharge(List<ZoneBoundaryCrossing> crossings) {
         // Method to get the charge for a vehicle
 
-        BigDecimal charge;
-        ZoneBoundaryCrossing lastEvent = crossings.get(0);
-        int timeIn = 0;
+        BigDecimal charge; // Value of the charge
+        ZoneBoundaryCrossing lastEvent = crossings.get(0); // Get the first event (always an Entry)
+        int timeIn = 0; // Counter for the time inside the zone
 
 
         if (lastEvent.timestamp() < 50400) { // If the first entry is before 2pm
@@ -55,12 +55,12 @@ public class Calculator implements  Calculating{
         } else {
             charge = new BigDecimal(4);
         }
-        // Go through the events, adding the time spent is zone to timeIn
 
+        // Go through the events, adding the time spent is zone to timeIn
         List<ZoneBoundaryCrossing> crossings_sublist = crossings.subList(1, crossings.size());
         for (ZoneBoundaryCrossing crossing : crossings_sublist) {
             if (crossing instanceof ExitEvent) {
-                  timeIn += crossing.timestamp()-lastEvent.timestamp(); //adding the time between the entry and exit to the timeIn
+                  timeIn += crossing.timestamp()-lastEvent.timestamp(); // Adding the time between the entry and exit to the timeIn
             }
             if (timeIn > 14400) { // If timeIn is more than 4h
                 charge = new BigDecimal(12);

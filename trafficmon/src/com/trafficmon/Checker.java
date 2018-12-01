@@ -14,6 +14,7 @@ public class Checker implements Checking{
         }
         return false;
     }
+
     public boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
         // Checks the event log for these problems
         //   - Timestamps not ordered
