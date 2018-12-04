@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class Calculator implements  Calculating{
+public class Calculator implements CalculatorInterface {
     private Checker checker = new Checker();
     private PenaltiesService operationsTeam;
     private AccountsService accountsService;

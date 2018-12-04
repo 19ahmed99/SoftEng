@@ -2,7 +2,7 @@ package com.trafficmon;
 
 import java.util.List;
 
-public interface main_system {
+public interface CongestionChargeSystemInterface {
     void vehicleEnteringZone(Vehicle vehicle);
     void vehicleLeavingZone(Vehicle vehicle);
     void calculateCharges();
