@@ -19,25 +19,25 @@ public class Calculator implements CalculatorInterface {
 
     public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
         // Main method to calculate charges for each vehicle
-
-        final Set<Map.Entry<Vehicle, List<ZoneBoundaryCrossing>>> entries_in_hashMap = crossingsByVehicle.entrySet();
-        for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : entries_in_hashMap) {
-            // Loop through the hash map
+        for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
             // Sets "vehicle" to the key and "crossings" to the value
             Vehicle vehicle = vehicleCrossings.getKey(); // This gets the current vehicle you are on
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
-
             boolean ordering_correct = checker.checkOrderingOf(crossings);
             if (!ordering_correct) {
                 operationsTeam.triggerInvestigationInto(vehicle);
             } else {
                 BigDecimal charge = getCharge(crossings); // Get the charge for this vehicle
-                try {
-                    accountsService.accountFor(vehicle).deduct(charge);
-                } catch (InsufficientCreditException | AccountNotRegisteredException ice) { // If the person has not enough credit or isn't registered
-                    operationsTeam.issuePenaltyNotice(vehicle, charge);
-                }
+                charge_account(vehicle, charge);
             }
+        }
+    }
+
+    private void charge_account(Vehicle vehicle, BigDecimal charge) {
+        try {
+            accountsService.accountFor(vehicle).deduct(charge);
+        } catch (InsufficientCreditException | AccountNotRegisteredException ice) { // If the person has not enough credit or isn't registered
+            operationsTeam.issuePenaltyNotice(vehicle, charge);
         }
     }
 
@@ -57,15 +57,9 @@ public class Calculator implements CalculatorInterface {
             if (crossing instanceof ExitEvent) {
                   timeIn += crossing.timestamp()-lastEvent.timestamp(); // Adding the time between the entry and exit to the timeIn
             }
-            /*if (timeIn > 14400) { // If timeIn is more than 4h
-                charge = new BigDecimal(12);
-                break;
-            }*/
             lastEvent = crossing;
         }
-        //add a check for timein -
        return (timeIn > 14400)? new BigDecimal(12) : charge;
-        //return charge;
     }
 
     // ----- Test Methods -----

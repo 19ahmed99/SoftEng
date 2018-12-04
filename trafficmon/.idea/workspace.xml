@@ -34,13 +34,23 @@
       <file leaf-file-name="Calculator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Calculator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="62" column="15" lean-forward="false" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="15" />
+            <state relative-caret-position="168">
+              <caret line="30" column="30" lean-forward="false" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
               <folding>
                 <element signature="method#Calculator#0;class#Calculator#0" expanded="false" />
-                <element signature="method#calculateCharges#0;class#Calculator#0" expanded="false" />
+                <element signature="method#getCharge#0;class#Calculator#0" expanded="false" />
                 <element signature="method#getCalculatedCharge#0;class#Calculator#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Example.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Example.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="8" lean-forward="true" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -119,8 +129,8 @@
         <option value="$PROJECT_DIR$/src/com/trafficmon/CongestionChargeSystem.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.fxml" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/com/trafficmon/Calculator.java" />
         <option value="$PROJECT_DIR$/src/com/trafficmon/Example.java" />
+        <option value="$PROJECT_DIR$/src/com/trafficmon/Calculator.java" />
       </list>
     </option>
   </component>
@@ -345,6 +355,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -360,7 +371,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27825466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27825466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -810,42 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Checker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="27" column="67" lean-forward="false" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/trafficmon/CongestionChargeSystemTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="192" column="41" lean-forward="false" selection-start-line="192" selection-start-column="41" selection-end-line="192" selection-end-column="41" />
-          <folding>
-            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#twoCarsGoInAndOutCheckCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPenaltyNoticeIssuedForNotRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
-            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/CongestionChargeSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
@@ -873,21 +848,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Checker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="27" column="67" lean-forward="false" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/CongestionChargeSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/trafficmon/CongestionChargeSystemTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="192" column="41" lean-forward="false" selection-start-line="192" selection-start-column="41" selection-end-line="192" selection-end-column="41" />
+          <folding>
+            <element signature="method#carGoesInAndOutCheckEventLogSize#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#carGoesInAndOutCheckEventLogEntries#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#carGoesInAndOutCheckCharge#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#twoCarsGoInAndOutCheckCharges#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#checkOrderingOfCrossing_TimeStampError#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#checkOrderingOfCrossing_DoubleEntryError#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#checkOrderingOfCrossing_DoubleExitError#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#checkInvestigationIsTriggeredIntoVehicleForFaultyTimestamps#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#checkPenaltyNoticeIssuedForNotRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#checkPreviouslyRegistered#0;class#CongestionChargeSystemTest#0" expanded="false" />
+            <element signature="method#unregisteredCarExitTest#0;class#CongestionChargeSystemTest#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Example.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="24" column="8" lean-forward="true" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Calculator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="62" column="15" lean-forward="false" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="15" />
+        <state relative-caret-position="168">
+          <caret line="30" column="30" lean-forward="false" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
           <folding>
             <element signature="method#Calculator#0;class#Calculator#0" expanded="false" />
-            <element signature="method#calculateCharges#0;class#Calculator#0" expanded="false" />
+            <element signature="method#getCharge#0;class#Calculator#0" expanded="false" />
             <element signature="method#getCalculatedCharge#0;class#Calculator#0" expanded="false" />
           </folding>
         </state>
