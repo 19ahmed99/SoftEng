@@ -23,7 +23,8 @@ public class Calculator implements  Calculating{
         final Set<Map.Entry<Vehicle, List<ZoneBoundaryCrossing>>> entries_in_hashMap = crossingsByVehicle.entrySet();
         for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : entries_in_hashMap) {
             // Loop through the hash map
-
+            System.out.println("this is the current vehicle crossing item");
+            System.out.println(vehicleCrossings);
             // Sets "vehicle" to the key and "crossings" to the value
             Vehicle vehicle = vehicleCrossings.getKey(); // This gets the current vehicle you are on
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
