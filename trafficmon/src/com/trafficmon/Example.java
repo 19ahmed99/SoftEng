@@ -12,10 +12,15 @@ public class Example {
         congestionChargeSystem.vehicleLeavingZone(Vehicle.withRegistration("J091 4PY"));
         congestionChargeSystem.calculateCharges();
     }
-    private static void delayMinutes(int mins) throws InterruptedException {
-        delaySeconds(mins * 60);
-    }
+
     private static void delaySeconds(int secs) throws InterruptedException {
         Thread.sleep(secs * 1000);
     }
+
+
+
+
+    //private static void delayMinutes(int mins) throws InterruptedException {
+    //delaySeconds(mins * 60);
+    // }
 }

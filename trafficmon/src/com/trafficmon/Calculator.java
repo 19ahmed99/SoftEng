@@ -23,8 +23,6 @@ public class Calculator implements CalculatorInterface {
         final Set<Map.Entry<Vehicle, List<ZoneBoundaryCrossing>>> entries_in_hashMap = crossingsByVehicle.entrySet();
         for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : entries_in_hashMap) {
             // Loop through the hash map
-            System.out.println("this is the current vehicle crossing item");
-            System.out.println(vehicleCrossings);
             // Sets "vehicle" to the key and "crossings" to the value
             Vehicle vehicle = vehicleCrossings.getKey(); // This gets the current vehicle you are on
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
@@ -50,33 +48,30 @@ public class Calculator implements CalculatorInterface {
         ZoneBoundaryCrossing lastEvent = crossings.get(0); // Get the first event (always an Entry)
         int timeIn = 0; // Counter for the time inside the zone
 
-
-        if (lastEvent.timestamp() < 50400) { // If the first entry is before 2pm
-            charge = new BigDecimal(6);
-        } else {
-            charge = new BigDecimal(4);
-        }
+        charge = lastEvent.timestamp() < 50400 ? new BigDecimal(6) : new BigDecimal(4);
 
         // Go through the events, adding the time spent is zone to timeIn
-        List<ZoneBoundaryCrossing> crossings_sublist = crossings.subList(1, crossings.size());
+        int size_of_crossings = crossings.size();
+        List<ZoneBoundaryCrossing> crossings_sublist = crossings.subList(1, size_of_crossings);
         for (ZoneBoundaryCrossing crossing : crossings_sublist) {
             if (crossing instanceof ExitEvent) {
                   timeIn += crossing.timestamp()-lastEvent.timestamp(); // Adding the time between the entry and exit to the timeIn
             }
-            if (timeIn > 14400) { // If timeIn is more than 4h
+            /*if (timeIn > 14400) { // If timeIn is more than 4h
                 charge = new BigDecimal(12);
                 break;
-            }
+            }*/
             lastEvent = crossing;
         }
-        return charge;
+        //add a check for timein -
+       return (timeIn > 14400)? new BigDecimal(12) : charge;
+        //return charge;
     }
 
     // ----- Test Methods -----
 
     public BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit){
         // A test method to calculate the charge for an entry/exit
-
         ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
         crossings.add(entry);
         crossings.add(exit);
