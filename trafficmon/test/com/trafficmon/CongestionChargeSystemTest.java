@@ -62,6 +62,7 @@ public class CongestionChargeSystemTest {
          * Car goes in, we set the timestamp
          * the car leaves, we set the timestamp
          * we calculate the charge for these two events and assert that it is indeed 4 - a value for an entry after 2pm
+         * Here, we check charges for : - Car that entered after 2pm (less than 4h in-zone)
          */
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
         system.getEventLog().get(0).setTimeStamp(54000);
@@ -77,6 +78,8 @@ public class CongestionChargeSystemTest {
         /*
          * Test Description
          * Two cars go in/out, we set all the timestamps and check that the correct charges are applied
+         * Here, we check charges for : - Car that entered before 2pm (less than 4h in-zone)
+         *                              - Car that entered before 2pm (more than 4h in-zone)
          */
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
         system.getEventLog().get(0).setTimeStamp(36000);
@@ -91,6 +94,39 @@ public class CongestionChargeSystemTest {
         MathContext mc = new MathContext(2);
         assertThat(first_car.round(mc), is((new BigDecimal(6)).round(mc)));
         assertThat(second_car.round(mc), is((new BigDecimal(12)).round(mc)));
+    }
+
+    @Test
+    public void SomeCarsGoInAndOutCheckCharges() {
+        /*
+         * Test Description
+         * Some cars go in/out, we set all the timestamps and check that the correct charges are applied
+         * Here, we check charges for : - Car that entered after 2pm (more than 4h in-zone)
+         *                              - Car that entered at 2pm (less than 4h in-zone)
+         *                              - Car that entered at 2pm (more than 4h in-zone)
+         */
+        // All cars In
+        system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
+        system.getEventLog().get(0).setTimeStamp(64800);
+        system.vehicleEnteringZone(Vehicle.withRegistration("A123 ABC"));
+        system.getEventLog().get(1).setTimeStamp(50400);
+        system.vehicleEnteringZone(Vehicle.withRegistration("D243 5PR"));
+        system.getEventLog().get(2).setTimeStamp(50400);
+        // All cars Out
+        system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
+        system.getEventLog().get(3).setTimeStamp(82800);
+        system.vehicleLeavingZone(Vehicle.withRegistration("A123 ABC"));
+        system.getEventLog().get(4).setTimeStamp(61200);
+        system.vehicleLeavingZone(Vehicle.withRegistration("A123 ABC"));
+        system.getEventLog().get(5).setTimeStamp(72000);
+
+        BigDecimal first_car = calculator.getCalculatedCharge(system.getEventLog().get(0), system.getEventLog().get(3));
+        BigDecimal second_car = calculator.getCalculatedCharge(system.getEventLog().get(1), system.getEventLog().get(4));
+        BigDecimal third_car = calculator.getCalculatedCharge(system.getEventLog().get(2), system.getEventLog().get(5));
+        MathContext mc = new MathContext(2);
+        assertThat(first_car.round(mc), is((new BigDecimal(12)).round(mc)));
+        assertThat(second_car.round(mc), is((new BigDecimal(4)).round(mc)));
+        assertThat(third_car.round(mc), is((new BigDecimal(12)).round(mc)));
     }
 
     @Test
