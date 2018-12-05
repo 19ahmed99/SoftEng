@@ -64,12 +64,8 @@ public class Calculator implements CalculatorInterface {
 
     // ----- Test Methods -----
 
-    public BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit){
-        // A test method to calculate the charge for an entry/exit
-        ArrayList<ZoneBoundaryCrossing> crossings = new ArrayList<>();
-        crossings.add(entry);
-        crossings.add(exit);
-
+    public BigDecimal getCalculatedCharge(List<ZoneBoundaryCrossing> crossings){
+        // A test method to calculate the charge for some entries/exits for one car
         return getCharge(crossings);
     }
 }

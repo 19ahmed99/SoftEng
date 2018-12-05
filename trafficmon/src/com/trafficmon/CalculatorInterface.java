@@ -6,5 +6,5 @@ import java.util.Map;
 
 public interface CalculatorInterface {
     void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle);
-    BigDecimal getCalculatedCharge(ZoneBoundaryCrossing entry, ZoneBoundaryCrossing exit);
+    BigDecimal getCalculatedCharge(List<ZoneBoundaryCrossing> crossings);
 }

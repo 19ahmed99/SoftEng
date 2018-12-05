@@ -68,7 +68,12 @@ public class CongestionChargeSystemTest {
         system.getEventLog().get(0).setTimeStamp(54000);
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
         system.getEventLog().get(1).setTimeStamp(61200);
-        BigDecimal our_value = calculator.getCalculatedCharge(system.getEventLog().get(0), system.getEventLog().get(1));
+
+        List<ZoneBoundaryCrossing> crossings = new ArrayList<>();
+        crossings.add(system.getEventLog().get(0));
+        crossings.add(system.getEventLog().get(1));
+
+        BigDecimal our_value = calculator.getCalculatedCharge(crossings);
         MathContext mc = new MathContext(2);
         assertThat(our_value.round(mc), is((new BigDecimal(4)).round(mc)));
     }
@@ -89,8 +94,16 @@ public class CongestionChargeSystemTest {
         system.getEventLog().get(2).setTimeStamp(43200);
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 ABC"));
         system.getEventLog().get(3).setTimeStamp(64800);
-        BigDecimal first_car = calculator.getCalculatedCharge(system.getEventLog().get(0), system.getEventLog().get(2));
-        BigDecimal second_car = calculator.getCalculatedCharge(system.getEventLog().get(1), system.getEventLog().get(3));
+
+        List<ZoneBoundaryCrossing> crossings_car1 = new ArrayList<>();
+        crossings_car1.add(system.getEventLog().get(0));
+        crossings_car1.add(system.getEventLog().get(2));
+        List<ZoneBoundaryCrossing> crossings_car2 = new ArrayList<>();
+        crossings_car2.add(system.getEventLog().get(1));
+        crossings_car2.add(system.getEventLog().get(3));
+
+        BigDecimal first_car = calculator.getCalculatedCharge(crossings_car1);
+        BigDecimal second_car = calculator.getCalculatedCharge(crossings_car2);
         MathContext mc = new MathContext(2);
         assertThat(first_car.round(mc), is((new BigDecimal(6)).round(mc)));
         assertThat(second_car.round(mc), is((new BigDecimal(12)).round(mc)));
@@ -120,9 +133,19 @@ public class CongestionChargeSystemTest {
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 ABC"));
         system.getEventLog().get(5).setTimeStamp(72000);
 
-        BigDecimal first_car = calculator.getCalculatedCharge(system.getEventLog().get(0), system.getEventLog().get(3));
-        BigDecimal second_car = calculator.getCalculatedCharge(system.getEventLog().get(1), system.getEventLog().get(4));
-        BigDecimal third_car = calculator.getCalculatedCharge(system.getEventLog().get(2), system.getEventLog().get(5));
+        List<ZoneBoundaryCrossing> crossings_car1 = new ArrayList<>();
+        crossings_car1.add(system.getEventLog().get(0));
+        crossings_car1.add(system.getEventLog().get(3));
+        List<ZoneBoundaryCrossing> crossings_car2 = new ArrayList<>();
+        crossings_car2.add(system.getEventLog().get(1));
+        crossings_car2.add(system.getEventLog().get(4));
+        List<ZoneBoundaryCrossing> crossings_car3 = new ArrayList<>();
+        crossings_car3.add(system.getEventLog().get(2));
+        crossings_car3.add(system.getEventLog().get(5));
+
+        BigDecimal first_car = calculator.getCalculatedCharge(crossings_car1);
+        BigDecimal second_car = calculator.getCalculatedCharge(crossings_car2);
+        BigDecimal third_car = calculator.getCalculatedCharge(crossings_car3);
         MathContext mc = new MathContext(2);
         assertThat(first_car.round(mc), is((new BigDecimal(12)).round(mc)));
         assertThat(second_car.round(mc), is((new BigDecimal(4)).round(mc)));
@@ -201,7 +224,10 @@ public class CongestionChargeSystemTest {
         system.vehicleLeavingZone(Vehicle.withRegistration("A234 YYY"));
         system.getEventLog().get(0).setTimeStamp(1000); //it enters at time 1000
         system.getEventLog().get(1).setTimeStamp(2000); //it enters at time 2000
-        BigDecimal expected_value = calculator.getCalculatedCharge(system.getEventLog().get(0), system.getEventLog().get(1));
+        List<ZoneBoundaryCrossing> crossings = new ArrayList<>();
+        crossings.add(system.getEventLog().get(0));
+        crossings.add(system.getEventLog().get(1));
+        BigDecimal expected_value = calculator.getCalculatedCharge(crossings);
 
         context.checking(new Expectations() {{
             exactly(1).of(penaltiesService).issuePenaltyNotice(Vehicle.withRegistration("A234 YYY"), expected_value);
