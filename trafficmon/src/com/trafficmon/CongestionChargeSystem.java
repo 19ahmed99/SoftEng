@@ -11,9 +11,7 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
 
     CongestionChargeSystem() {
         // Main constructor
-        this.operationsTeam = OperationsTeam.getInstance();
-        this.checker = new Checker();
-        this.calculator = new Calculator(operationsTeam);
+        this(OperationsTeam.getInstance());
     }
     CongestionChargeSystem(PenaltiesService operationsTeam) {
         // Constructor that takes an operations team (for testing)
