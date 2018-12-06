@@ -5,61 +5,56 @@ import java.util.*;
 public class CongestionChargeSystem implements CongestionChargeSystemInterface {
 
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<>();
-    private final Calculator calculator;
-    private final Checker checker;
-    private PenaltiesService operationsTeam;
+    private final CalculatorInterface calculator;
+    private final CheckerInterface checker;
+    private final Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<>(); //moved to the top
 
     CongestionChargeSystem() {
-        // Main constructor
-        this(OperationsTeam.getInstance());
-    }
-    CongestionChargeSystem(PenaltiesService operationsTeam) {
         // Constructor that takes an operations team (for testing)
-        this.operationsTeam = operationsTeam;
         this.checker = new Checker();
-        this.calculator = new Calculator(operationsTeam);
+        this.calculator = new Calculator(checker);
+    }
+
+    CongestionChargeSystem(CalculatorInterface calculator, CheckerInterface checker) {
+        // Constructor that takes an operations team (for testing)
+        this.calculator = calculator;
+        this.checker = checker;
+
     }
 
     public void vehicleEnteringZone(Vehicle vehicle) {
         // Vehicle entry
-        eventLog.add(new EntryEvent(vehicle));
+        EntryEvent new_entry = new EntryEvent(vehicle);
+        eventLog.add(new_entry);
+        if (!crossingsByVehicle.containsKey(vehicle)) {
+            crossingsByVehicle.put(vehicle, new ArrayList<>());
+        }
+        crossingsByVehicle.get(vehicle).add(new_entry);
     }
 
     public void vehicleLeavingZone(Vehicle vehicle) {
         // Vehicle exit
         if (checker.previouslyRegistered(vehicle, eventLog)){
-            eventLog.add(new ExitEvent(vehicle));
+            ExitEvent new_exit = new ExitEvent(vehicle);
+            eventLog.add(new_exit);
+            crossingsByVehicle.get(vehicle).add(new_exit);
         }
     }
 
     public void calculateCharges() {
         // Method to calculate charges (calls the Calculator)
-        calculator.calculateCharges(generateHashMap());
+        calculator.calculateCharges(crossingsByVehicle);
     }
 
-    private Map<Vehicle, List<ZoneBoundaryCrossing>> generateHashMap() {
-        // Method to create a hash map with events per vehicle
-
-        Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<>();
-        // Hash map: (key,value) = (Vehicle object, array list of the events (entry/exit)
-
-        // Go through the event log
-        //    - If the vehicle is already in, just add the event to the array list
-        //    - If not, then create an entry with the vehicle, then add the event to the array list
-        for (ZoneBoundaryCrossing crossing : eventLog) {
-            if (!crossingsByVehicle.containsKey(crossing.getVehicle())) {
-                crossingsByVehicle.put(crossing.getVehicle(), new ArrayList<>());
-            }
-            crossingsByVehicle.get(crossing.getVehicle()).add(crossing);
-        }
-
-        return crossingsByVehicle;
-    }
 
     // ----- Test Method -----
 
     public List<ZoneBoundaryCrossing> getEventLog() {
         // Method to get the event log
         return eventLog;
+    }
+
+    public Map<Vehicle, List<ZoneBoundaryCrossing>> getHashMap(){
+        return crossingsByVehicle;
     }
 }
