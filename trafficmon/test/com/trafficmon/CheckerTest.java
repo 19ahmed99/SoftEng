@@ -3,13 +3,9 @@ package com.trafficmon;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.math.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -65,8 +61,6 @@ public class CheckerTest {
         crossings.add((new ExitEvent(Vehicle.withRegistration("A123 XYZ")))); //adding an exit
         crossings.get(1).setTimeStamp(crossings.get(0).timestamp() - 1); //making the second event have a smaller timestamp than the first
         assertFalse(checker.checkOrderingOf(crossings));
-        //crossings.get(1).setTimeStamp(crossings.get(0).timestamp() + 1);
-        //assertTrue(checker.checkOrderingOf(crossings));
     }
 
     @Test

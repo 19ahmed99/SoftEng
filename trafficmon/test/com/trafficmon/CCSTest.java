@@ -3,14 +3,10 @@ package com.trafficmon;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.math.*;
-import java.util.ArrayList;
-import java.util.List;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class CCSTest {

@@ -13,21 +13,14 @@ import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 public class CalculatorTest {
 
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
     private CheckerInterface checker = context.mock(CheckerInterface.class);
-    private CongestionChargeSystemInterface system = context.mock(CongestionChargeSystemInterface.class);
     private PenaltiesService operationsTeam = context.mock(PenaltiesService.class);
     private Calculator calculator = new Calculator(checker,operationsTeam);
-
-
-
 
     @Test
     public void checkCalculateChargesWithCrossingsThatAreNotOrdered() {
@@ -65,7 +58,6 @@ public class CalculatorTest {
         Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add(new EntryEvent(vehicle));
         crossingsForVehicle.add(new ExitEvent(vehicle));
-        BigDecimal charge = new BigDecimal(10000);
 
         context.checking(new Expectations() {{
             exactly(1).of(checker).checkOrderingOf(crossingsForVehicle);will(returnValue(true));
