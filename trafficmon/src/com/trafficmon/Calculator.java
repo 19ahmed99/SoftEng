@@ -20,7 +20,7 @@ public class Calculator implements CalculatorInterface {
 
     Calculator(CheckerInterface checker, PenaltiesService operationsTeam, AccountsService accountsService) {
         // Constructor that takes the operations team
-        this.checker = checker;
+        this(checker);
         this.operationsTeam = operationsTeam;
         this.accountsService = accountsService;
     }

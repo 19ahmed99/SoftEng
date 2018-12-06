@@ -39,11 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Calculator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Calculator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Calculator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="35" column="20" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+            <state relative-caret-position="207">
+              <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -94,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalculatorTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CalculatorTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/com/trafficmon/CalculatorTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="395">
@@ -488,9 +488,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CalculatorTest_checkCalculateChargesWithCrossingsNotOrdered - 2018.12.06 at 10h 26m 08s.xml">
-      <configuration name="CalculatorTest.checkCalculateChargesWithCrossingsNotOrdered" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CalculatorTest_checkCalculateChargesWithCrossingsNotOrdered - 2018.12.06 at 11h 52m 54s.xml">
       <configuration name="CalculatorTest.checkCalculateChargesWithCrossingsNotOrdered" configurationId="JUnit" />
     </history-entry>
@@ -498,6 +495,9 @@
       <configuration name="CalculatorTest.checkCalculateChargesWithCrossingsNotOrdered" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CalculatorTest_checkCalculateChargesWithCrossingsNotOrdered - 2018.12.06 at 11h 56m 23s.xml">
+      <configuration name="CalculatorTest.checkCalculateChargesWithCrossingsNotOrdered" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CalculatorTest_checkCalculateChargesWithCrossingsNotOrdered - 2018.12.06 at 11h 57m 20s.xml">
       <configuration name="CalculatorTest.checkCalculateChargesWithCrossingsNotOrdered" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CheckerTest - 2018.12.06 at 11h 24m 37s.xml">
@@ -948,6 +948,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Calculator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/com/trafficmon/CalculatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
@@ -955,14 +963,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/trafficmon/Calculator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="35" column="20" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
