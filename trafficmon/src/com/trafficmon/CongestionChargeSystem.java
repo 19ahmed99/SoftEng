@@ -10,7 +10,6 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
     private final Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<>(); //moved to the top
 
     CongestionChargeSystem() {
-        // Constructor that takes an operations team (for testing)
         this.checker = new Checker();
         this.calculator = new Calculator(checker);
     }

@@ -22,9 +22,10 @@ public class CalculatorTest {
     public JUnitRuleMockery context = new JUnitRuleMockery();
     private CheckerInterface checker = context.mock(CheckerInterface.class);
     private CongestionChargeSystemInterface system = context.mock(CongestionChargeSystemInterface.class);
-    private Calculator calculator = new Calculator(checker);
     private PenaltiesService operationsTeam = context.mock(PenaltiesService.class);
     private AccountsService accountsService = context.mock(AccountsService.class);
+    private Calculator calculator = new Calculator(checker,operationsTeam,accountsService);
+
 
     //Test 1
     //make a hashmap of the cars and stuff then send it into calculateCharges
@@ -42,7 +43,7 @@ public class CalculatorTest {
 
         context.checking(new Expectations() {{
             exactly(1).of(checker).checkOrderingOf(crossingsForVehicle);will(returnValue(false));
-            //exactly(1).of(operationsTeam).triggerInvestigationInto(vehicle); ----------- why is this not working
+            exactly(1).of(operationsTeam).triggerInvestigationInto(vehicle);
         }});
 
         Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicles = new HashMap<>();

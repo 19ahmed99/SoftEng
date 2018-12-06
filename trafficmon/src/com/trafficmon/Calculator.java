@@ -18,6 +18,13 @@ public class Calculator implements CalculatorInterface {
         this.accountsService = RegisteredCustomerAccountsService.getInstance();
     }
 
+    Calculator(CheckerInterface checker, PenaltiesService operationsTeam, AccountsService accountsService) {
+        // Constructor that takes the operations team
+        this.checker = checker;
+        this.operationsTeam = operationsTeam;
+        this.accountsService = accountsService;
+    }
+
     public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
         for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
             Vehicle vehicle = vehicleCrossings.getKey();
