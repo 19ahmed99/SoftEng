@@ -18,11 +18,9 @@ public class Calculator implements CalculatorInterface {
         this.accountsService = RegisteredCustomerAccountsService.getInstance();
     }
 
-    Calculator(CheckerInterface checker, PenaltiesService operationsTeam, AccountsService accountsService) {
-        // Constructor that takes the operations team
-        this(checker);
+    Calculator(CheckerInterface checker, PenaltiesService operationsTeam) {
+        this(checker); //constructor chaining
         this.operationsTeam = operationsTeam;
-        this.accountsService = accountsService;
     }
 
     public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
@@ -40,7 +38,7 @@ public class Calculator implements CalculatorInterface {
         }
     }
 
-    public void charge_account(Vehicle vehicle, BigDecimal charge) {
+    public void charge_account(Vehicle vehicle, BigDecimal charge)  {
         try {
             accountsService.accountFor(vehicle).deduct(charge);
         } catch (InsufficientCreditException | AccountNotRegisteredException ice) { // If the person has not enough credit or isn't registered
@@ -55,7 +53,10 @@ public class Calculator implements CalculatorInterface {
         ZoneBoundaryCrossing lastEvent = crossings.get(0); // Get the first event (always an Entry)
         int timeIn = 0; // Counter for the time inside the zone
 
-        charge = lastEvent.timestamp() < 50400 ? new BigDecimal(6) : new BigDecimal(4);
+        int two_pm = 14*60*60; //14 hours in seconds
+        int four_hours = 4*60*60;
+
+        charge = lastEvent.timestamp() < two_pm ? new BigDecimal(6) : new BigDecimal(4);
 
         // Go through the events, adding the time spent is zone to timeIn
         int size_of_crossings = crossings.size();
@@ -66,7 +67,7 @@ public class Calculator implements CalculatorInterface {
             }
             lastEvent = crossing;
         }
-       return (timeIn > 14400)? new BigDecimal(12) : charge;
+       return (timeIn > four_hours )? new BigDecimal(12) : charge;
     }
 
     // ----- Test Methods -----

@@ -53,7 +53,7 @@ public class CheckerTest {
     //   - Two exits in a row
 
     @Test
-    public void testingCheckOrderingOfWithFaultyTimestamps() {
+    public void testingCheckOrderingWithFaultyTimestamps() {
         /*
          * Test Description
          * Create an entry and exit with messed up timestamps
@@ -65,6 +65,22 @@ public class CheckerTest {
         crossings.add((new ExitEvent(Vehicle.withRegistration("A123 XYZ")))); //adding an exit
         crossings.get(1).setTimeStamp(crossings.get(0).timestamp() - 1); //making the second event have a smaller timestamp than the first
         assertFalse(checker.checkOrderingOf(crossings));
+        //crossings.get(1).setTimeStamp(crossings.get(0).timestamp() + 1);
+        //assertTrue(checker.checkOrderingOf(crossings));
+    }
+
+    @Test
+    public void testingCheckOrderingWithCorrectTimestamps() {
+        /*
+         * Test Description
+         * Create an entry and exit with messed up timestamps
+         * Check that the checkOrdering() method returns false
+         * sort out the timestamps then check that it is working now
+         */
+        final List<ZoneBoundaryCrossing> crossings = new ArrayList<>();
+        crossings.add((new EntryEvent(Vehicle.withRegistration("A123 XYZ")))); //adding an entry
+        crossings.add((new ExitEvent(Vehicle.withRegistration("A123 XYZ")))); //adding an exit
+        crossings.get(1).setTimeStamp(crossings.get(0).timestamp() + 1); //making the second event have a larger timestamp than the first
         crossings.get(1).setTimeStamp(crossings.get(0).timestamp() + 1);
         assertTrue(checker.checkOrderingOf(crossings));
     }
@@ -82,13 +98,15 @@ public class CheckerTest {
         assertFalse(checker.checkOrderingOf(crossings));
     }
 
+
+    /*
+     * Test Description
+        * Add two exits in a row into the EventLog
+        * Assert that the checkOrdering() method returns false
+     */
     @Test
     public void checkOrderingOfCrossing_DoubleExitError() {
-        /*
-         * Test Description
-         * Create two exits in a row
-         * Check that the checkOrdering() method returns false
-         */
+
         final List<ZoneBoundaryCrossing> crossings = new ArrayList<>();
         crossings.add((new ExitEvent(Vehicle.withRegistration("A123 XYZ")))); // Adding an exit
         crossings.add((new ExitEvent(Vehicle.withRegistration("A123 XYZ")))); // Adding an exit

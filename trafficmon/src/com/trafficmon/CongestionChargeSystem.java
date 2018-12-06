@@ -49,7 +49,6 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
     // ----- Test Method -----
 
     public List<ZoneBoundaryCrossing> getEventLog() {
-        // Method to get the event log
         return eventLog;
     }
 

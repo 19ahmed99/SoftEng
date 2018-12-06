@@ -74,7 +74,7 @@ public class CCSTest {
     }
 
     @Test
-    public void checkPreviouslyRegisteredIsDelegatedToCheckerWithUnregisteredCar() {
+    public void checkPreviouslyRegisteredIsDelegatedToCheckerUsingAnUnregisteredCar() {
         context.checking(new Expectations() {{
             exactly(1).of(checker).previouslyRegistered(Vehicle.withRegistration("A123 XYA"),system.getEventLog());
             will(returnValue(false));
