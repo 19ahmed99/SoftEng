@@ -30,17 +30,17 @@ public class CalculatorTest {
         //in this test it will return true and thence expect call to operations team
 
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add(new ExitEvent(vehicle));
         crossingsForVehicle.add(new EntryEvent(vehicle));
         //putting the entries in the wrong order
 
         context.checking(new Expectations() {{
             exactly(1).of(checker).checkOrderingOf(crossingsForVehicle);will(returnValue(false));
-            exactly(1).of(operationsTeam).triggerInvestigationInto(vehicle);
+            exactly(1).of(operationsTeam).triggerInvestigationInto((Vehicle) vehicle);
         }});
 
-        Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicles = new HashMap<>();
+        Map<VehicleInterface, List<ZoneBoundaryCrossing>> crossingsByVehicles = new HashMap<>();
         crossingsByVehicles.put(vehicle, crossingsForVehicle);
         calculator.calculateCharges(crossingsByVehicles);
 
@@ -55,7 +55,7 @@ public class CalculatorTest {
     public void checkCalculateChargesWithCrossingsOrdered() {
 
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add(new EntryEvent(vehicle));
         crossingsForVehicle.add(new ExitEvent(vehicle));
 
@@ -63,7 +63,7 @@ public class CalculatorTest {
             exactly(1).of(checker).checkOrderingOf(crossingsForVehicle);will(returnValue(true));
         }});
 
-        Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicles = new HashMap<>();
+        Map<VehicleInterface, List<ZoneBoundaryCrossing>> crossingsByVehicles = new HashMap<>();
         crossingsByVehicles.put(vehicle, crossingsForVehicle);
         calculator.calculateCharges(crossingsByVehicles);
 
@@ -77,11 +77,11 @@ public class CalculatorTest {
 
     @Test
     public void checkChargeAccountForInsufficientFunds() {
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         BigDecimal ridiculous_charge = new BigDecimal(10000);
 
         context.checking(new Expectations() {{
-            exactly(1).of(operationsTeam).issuePenaltyNotice(vehicle,ridiculous_charge);
+            exactly(1).of(operationsTeam).issuePenaltyNotice((Vehicle) vehicle,ridiculous_charge);
         }});
         calculator.charge_account(vehicle, ridiculous_charge);
     }
@@ -96,11 +96,11 @@ public class CalculatorTest {
 
     @Test
     public void checkChargeAccountForNotRegistered() {
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZZ");
         BigDecimal charge = new BigDecimal(10000);
 
         context.checking(new Expectations() {{
-            exactly(1).of(operationsTeam).issuePenaltyNotice(vehicle,charge);
+            exactly(1).of(operationsTeam).issuePenaltyNotice((Vehicle) vehicle,charge);
         }});
         calculator.charge_account(vehicle, charge);
     }
@@ -116,10 +116,10 @@ public class CalculatorTest {
     @Test
     public void checkChargeAccountForNoExceptions() {
 
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         BigDecimal charge = new BigDecimal(0);
         context.checking(new Expectations() {{
-            exactly(0).of(operationsTeam).issuePenaltyNotice(vehicle,charge);
+            exactly(0).of(operationsTeam).issuePenaltyNotice((Vehicle) vehicle,charge);
         }});
 
         calculator.charge_account(vehicle,charge);
@@ -135,7 +135,7 @@ public class CalculatorTest {
     @Test
     public void checkChargesForEntryBefore2LessThan4Hours(){
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
         crossingsForVehicle.get(0).setTimeStamp(50000);
         crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
@@ -153,7 +153,7 @@ public class CalculatorTest {
     @Test
     public void checkChargesForEntryBefore2MoreThan4hours(){
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
         crossingsForVehicle.get(0).setTimeStamp(46800);
         crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
@@ -171,7 +171,7 @@ public class CalculatorTest {
     @Test
     public void checkChargesForEntryAfter2LessThan4hours(){
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
         crossingsForVehicle.get(0).setTimeStamp(50500);
         crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
@@ -189,7 +189,7 @@ public class CalculatorTest {
     @Test
     public void checkChargesForEntryAfter2MoreThan4hours(){
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
         crossingsForVehicle.get(0).setTimeStamp(50500);
         crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
@@ -207,7 +207,7 @@ public class CalculatorTest {
     @Test
     public void checkChargesForDoubleEntryBeforeandAfter2LessThan4hours(){
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
         crossingsForVehicle.get(0).setTimeStamp(46800);
         crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
@@ -229,7 +229,7 @@ public class CalculatorTest {
     @Test
     public void checkChargesForDoubleEntryBeforeAndAfter2StayingForMoreThan4hours(){
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
         crossingsForVehicle.get(0).setTimeStamp(46800);
         crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry

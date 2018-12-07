@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface CongestionChargeSystemInterface {
-    void vehicleEnteringZone(Vehicle vehicle);
-    void vehicleLeavingZone(Vehicle vehicle);
+    void vehicleEnteringZone(VehicleInterface vehicle);
+    void vehicleLeavingZone(VehicleInterface vehicle);
     void calculateCharges();
     List<ZoneBoundaryCrossing> getEventLog();
-    Map<Vehicle, List<ZoneBoundaryCrossing>> getHashMap();
-
+    Map<VehicleInterface, List<ZoneBoundaryCrossing>> getHashMap();
 }

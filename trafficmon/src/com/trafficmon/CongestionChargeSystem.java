@@ -7,7 +7,7 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<>();
     private final CalculatorInterface calculator;
     private final CheckerInterface checker;
-    private final Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<>(); //moved to the top
+    private final Map<VehicleInterface, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<>(); //moved to the top
 
     CongestionChargeSystem() {
         this.checker = new Checker();
@@ -21,7 +21,7 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
 
     }
 
-    public void vehicleEnteringZone(Vehicle vehicle) {
+    public void vehicleEnteringZone(VehicleInterface vehicle) {
         // Vehicle entry
         EntryEvent new_entry = new EntryEvent(vehicle);
         eventLog.add(new_entry);
@@ -31,7 +31,7 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
         crossingsByVehicle.get(vehicle).add(new_entry);
     }
 
-    public void vehicleLeavingZone(Vehicle vehicle) {
+    public void vehicleLeavingZone(VehicleInterface vehicle) {
         // Vehicle exit
         if (checker.previouslyRegistered(vehicle, eventLog)){
             ExitEvent new_exit = new ExitEvent(vehicle);
@@ -52,7 +52,7 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
         return eventLog;
     }
 
-    public Map<Vehicle, List<ZoneBoundaryCrossing>> getHashMap(){
+    public Map<VehicleInterface, List<ZoneBoundaryCrossing>> getHashMap(){
         return crossingsByVehicle;
     }
 }

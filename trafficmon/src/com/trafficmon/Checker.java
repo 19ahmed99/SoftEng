@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Checker implements CheckerInterface {
 
-    public boolean previouslyRegistered(Vehicle vehicle, List<ZoneBoundaryCrossing> eventLog) {
+    public boolean previouslyRegistered(VehicleInterface vehicle, List<ZoneBoundaryCrossing> eventLog) {
         // Checks if the vehicle is already in the event log
 
         for (ZoneBoundaryCrossing crossing : eventLog) {

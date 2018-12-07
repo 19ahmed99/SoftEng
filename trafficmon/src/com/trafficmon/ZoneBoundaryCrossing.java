@@ -5,10 +5,10 @@ import org.joda.time.Instant;
 
 public abstract class ZoneBoundaryCrossing {
 
-    private final Vehicle vehicle;
+    private final VehicleInterface vehicle;
     private int time;
 
-    ZoneBoundaryCrossing(Vehicle vehicle) {
+    ZoneBoundaryCrossing(VehicleInterface vehicle) {
         // Constructor that takes a vehicle and gets the actual time
         this.vehicle = vehicle;
         // Gets the time in the day (in terms of seconds)
@@ -16,7 +16,7 @@ public abstract class ZoneBoundaryCrossing {
         this.time = instant.get(DateTimeFieldType.secondOfDay());
     }
 
-    public Vehicle getVehicle() {
+    public VehicleInterface getVehicle() {
         // Method to get the object's vehicle
         return vehicle;
     }

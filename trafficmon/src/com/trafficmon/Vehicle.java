@@ -1,6 +1,6 @@
 package com.trafficmon;
 
-public class Vehicle {
+public class Vehicle implements VehicleInterface {
 
     private final String registration;
 
@@ -8,9 +8,7 @@ public class Vehicle {
         this.registration = registration;
     }
 
-    public static Vehicle withRegistration(String registration) {
-        return new Vehicle(registration);
-    }
+    public static Vehicle withRegistration(String registration) {return new Vehicle(registration);}
 
     @Override
     public String toString() {

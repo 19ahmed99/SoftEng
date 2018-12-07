@@ -15,7 +15,7 @@ public class VehicleTest {
          * Create a Vehicle
          * Check the toString() method in the class
          */
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         assertThat(vehicle.toString(), is("Vehicle [A123 XYZ]"));
     }
 
@@ -26,9 +26,9 @@ public class VehicleTest {
          * Create three Vehicles
          * Check the equals() method in the class
          */
-        Vehicle vehicle1 = Vehicle.withRegistration("A123 XYZ");
-        Vehicle vehicle2 = Vehicle.withRegistration("A123 ABC");
-        Vehicle vehicle3 = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle1 = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle2 = Vehicle.withRegistration("A123 ABC");
+        VehicleInterface vehicle3 = Vehicle.withRegistration("A123 XYZ");
 
         assertTrue(vehicle1.equals(vehicle1)); // Same object reference
         assertFalse(vehicle1.equals(vehicle2)); // Different registrations and different object references
@@ -42,9 +42,9 @@ public class VehicleTest {
          * Create two Vehicles
          * Check the hashCode() method in the class
          */
-        Vehicle vehicle1 = Vehicle.withRegistration(null);
+        VehicleInterface vehicle1 = Vehicle.withRegistration(null);
         assertTrue(vehicle1.hashCode() == 0);
-        Vehicle vehicle2 = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle2 = Vehicle.withRegistration("A123 XYZ");
         assertTrue(vehicle2.hashCode() == vehicle2.getRegistration().hashCode());
     }
 }

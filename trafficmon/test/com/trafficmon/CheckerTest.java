@@ -22,11 +22,10 @@ public class CheckerTest {
     @Test
     public void checkPreviouslyRegisteredOnRegisteredCar() {
         List<ZoneBoundaryCrossing> dummy_eventLog = new ArrayList<>();
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         dummy_eventLog.add(new EntryEvent(vehicle));
         dummy_eventLog.add(new ExitEvent(vehicle));
         assertTrue(checker.previouslyRegistered(vehicle,dummy_eventLog));
-
     }
 
     //Test2
@@ -36,7 +35,7 @@ public class CheckerTest {
     @Test
     public void checkPreviouslyRegisteredOnUnregisteredCar() {
         List<ZoneBoundaryCrossing> dummy_eventLog = new ArrayList<>();
-        Vehicle vehicle = Vehicle.withRegistration("A123 XYZ");
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         dummy_eventLog.add(new EntryEvent(vehicle));
         dummy_eventLog.add(new ExitEvent(vehicle));
         assertFalse(checker.previouslyRegistered(Vehicle.withRegistration("A123 ABC"),dummy_eventLog));

@@ -21,26 +21,26 @@ public class Calculator implements CalculatorInterface {
         this.operationsTeam = operationsTeam;
     }
 
-    public void calculateCharges(Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
-        for (Map.Entry<Vehicle, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
-            Vehicle vehicle = vehicleCrossings.getKey();
+    public void calculateCharges(Map<VehicleInterface, List<ZoneBoundaryCrossing>> crossingsByVehicle) {
+        for (Map.Entry<VehicleInterface, List<ZoneBoundaryCrossing>> vehicleCrossings : crossingsByVehicle.entrySet()) {
+            VehicleInterface vehicle = vehicleCrossings.getKey();
             List<ZoneBoundaryCrossing> crossings = vehicleCrossings.getValue();
             boolean ordering_correct = checker.checkOrderingOf(crossings);
             if (ordering_correct) {
                 BigDecimal charge = getCharge(crossings); // Get the charge for this vehicle
                 charge_account(vehicle, charge);
             } else {
-                operationsTeam.triggerInvestigationInto(vehicle);
+                operationsTeam.triggerInvestigationInto((Vehicle) vehicle); // Object reference type casting
 
             }
         }
     }
 
-    public void charge_account(Vehicle vehicle, BigDecimal charge)  {
+    public void charge_account(VehicleInterface vehicle, BigDecimal charge)  {
         try {
-            accountsService.accountFor(vehicle).deduct(charge);
+            accountsService.accountFor((Vehicle) vehicle).deduct(charge);
         } catch (InsufficientCreditException | AccountNotRegisteredException ice) { // If the person has not enough credit or isn't registered
-            operationsTeam.issuePenaltyNotice(vehicle, charge);
+            operationsTeam.issuePenaltyNotice((Vehicle) vehicle, charge);
         }
     }
 
