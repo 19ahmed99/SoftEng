@@ -242,6 +242,26 @@ public class CalculatorTest {
         assertThat(calculator.getCalculatedCharge(crossingsForVehicle), is(new BigDecimal(12)));
     }
 
+    @Test
+    public void checkChargesForExtremeScenario() {
+        List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
+        VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
+        crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
+        crossingsForVehicle.get(0).setTimeStamp(0);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(1).setTimeStamp(60);
+        crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
+        crossingsForVehicle.get(2).setTimeStamp(5*60*60);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(3).setTimeStamp(5*60*60+1);
+        crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
+        crossingsForVehicle.get(4).setTimeStamp(10*60*60);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(5).setTimeStamp(10*60*60+1);
+
+        assertThat(calculator.getCalculatedCharge(crossingsForVehicle), is(new BigDecimal(18)));
+    }
+
 
 
 

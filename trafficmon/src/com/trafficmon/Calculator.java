@@ -64,6 +64,7 @@ public class Calculator implements CalculatorInterface {
 
         int two_pm = 14*60*60; //14 hours in seconds
         int four_hours = 4*60*60;
+        int interval;
 
         charge = lastEvent.timestamp() < two_pm ? 6 : 4;
 
@@ -71,18 +72,17 @@ public class Calculator implements CalculatorInterface {
         int size_of_crossings = crossings.size();
         List<ZoneBoundaryCrossing> crossings_sublist = crossings.subList(1, size_of_crossings);
         for (ZoneBoundaryCrossing crossing : crossings_sublist) {
-            if ((crossing instanceof  EntryEvent) && (crossing.timestamp() - lastEvent.timestamp() > four_hours)) {
+            interval = crossing.timestamp() - lastEvent.timestamp();
+            if ((crossing instanceof  EntryEvent) && (interval > four_hours)) {
                 total_charge += charge;
                 charge = crossing.timestamp() < two_pm ? 6 : 4;
             }
             if (crossing instanceof ExitEvent) {
-                  timeIn += crossing.timestamp()-lastEvent.timestamp(); // Adding the time between the entry and exit to the timeIn
+                  timeIn += interval; // Adding the time between the entry and exit to the timeIn
             }
             lastEvent = crossing;
             if (timeIn > four_hours) {
-                charge = 0;
-                total_charge = 12;
-                break;
+                return new BigDecimal(12);
             }
         }
 
