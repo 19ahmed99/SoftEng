@@ -45,7 +45,17 @@ public class Calculator implements CalculatorInterface {
     }
 
     private BigDecimal getCharge(List<ZoneBoundaryCrossing> crossings) {
-        // Method to get the charge for a vehicle
+        /* PLEASE READ
+        - From reading the brief, we were slightly confused as it mentioned that:
+        "If you stay inside the zone for longer than 4 hours on a given day then you will be charged £12."
+        however beforehand in the same paragraph, it said:
+        "If you leave and come back within 4 hours, you should not be charged twice." which led us to believe
+        that if you leave and come back after 4 hours, you should be charged twice. A scenario where this may be confusing is
+        if i enter for 2 minutes each time however the gap between the last exit and new entry  is longer than 4 hours then
+        the user could be charged up to £32 which would be foolish as if you stay inside for the whole day, the maximum charge would be £12.
+        And so our implementation assumes that if the total time in is more than four hours, then the charge is £12.
+        If an aforementioned scenario occurs, then you could be charged up to £32 (Entering for a few seconds every four hours)
+         */
 
         int charge;
         int total_charge = 0;
