@@ -47,25 +47,37 @@ public class Calculator implements CalculatorInterface {
     private BigDecimal getCharge(List<ZoneBoundaryCrossing> crossings) {
         // Method to get the charge for a vehicle
 
-        BigDecimal charge; // Value of the charge
+        int charge;
+        int total_charge = 0;
         ZoneBoundaryCrossing lastEvent = crossings.get(0); // Get the first event (always an Entry)
         int timeIn = 0; // Counter for the time inside the zone
 
         int two_pm = 14*60*60; //14 hours in seconds
         int four_hours = 4*60*60;
 
-        charge = lastEvent.timestamp() < two_pm ? new BigDecimal(6) : new BigDecimal(4);
+        charge = lastEvent.timestamp() < two_pm ? 6 : 4;
 
         // Go through the events, adding the time spent is zone to timeIn
         int size_of_crossings = crossings.size();
         List<ZoneBoundaryCrossing> crossings_sublist = crossings.subList(1, size_of_crossings);
         for (ZoneBoundaryCrossing crossing : crossings_sublist) {
+            if ((crossing instanceof  EntryEvent) && (crossing.timestamp() - lastEvent.timestamp() > four_hours)) {
+                total_charge += charge;
+                charge = crossing.timestamp() < two_pm ? 6 : 4;
+            }
             if (crossing instanceof ExitEvent) {
                   timeIn += crossing.timestamp()-lastEvent.timestamp(); // Adding the time between the entry and exit to the timeIn
             }
             lastEvent = crossing;
+            if (timeIn > four_hours) {
+                charge = 0;
+                total_charge = 12;
+                break;
+            }
         }
-       return (timeIn > four_hours )? new BigDecimal(12) : charge;
+
+        total_charge += charge;
+        return new BigDecimal(total_charge);
     }
 
     // ----- Test Methods -----
