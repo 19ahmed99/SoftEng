@@ -2,13 +2,11 @@ package com.trafficmon;
 
 import org.junit.Rule;
 import org.junit.Test;
-
 import java.math.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,226 +22,216 @@ public class CalculatorTest {
 
     @Test
     public void checkCalculateChargesWithCrossingsThatAreNotOrdered() {
-        //Test 1
-        //make a hashmap of the cars and stuff then send it into calculateCharges
-        //expect a call to the checker
-        //in this test it will return true and thence expect call to operations team
-
+        /*
+         * Test Description
+         * Pass a HashMap with not ordered events to calculateCharges()
+         * We expect a call to the checker and a call to Operations Team
+         */
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
-        crossingsForVehicle.add(new ExitEvent(vehicle));
+        crossingsForVehicle.add(new ExitEvent(vehicle)); // Putting the events in the wrong order
         crossingsForVehicle.add(new EntryEvent(vehicle));
-        //putting the entries in the wrong order
+        Map<VehicleInterface, List<ZoneBoundaryCrossing>> crossingsByVehicles = new HashMap<>();
+        crossingsByVehicles.put(vehicle, crossingsForVehicle);
 
         context.checking(new Expectations() {{
             exactly(1).of(checker).checkOrderingOf(crossingsForVehicle);will(returnValue(false));
             exactly(1).of(operationsTeam).triggerInvestigationInto((Vehicle) vehicle);
         }});
 
-        Map<VehicleInterface, List<ZoneBoundaryCrossing>> crossingsByVehicles = new HashMap<>();
-        crossingsByVehicles.put(vehicle, crossingsForVehicle);
         calculator.calculateCharges(crossingsByVehicles);
-
     }
 
-
-    //Test 2
-    //make a hashmap of the cars and stuff then send it into calculateCharges
-    //expect a call to the checker
-    //in this test it will return false and thence expect a call to charge_account
     @Test
     public void checkCalculateChargesWithCrossingsOrdered() {
+        /*
+         * Test Description
+         * Pass a HashMap with ordered events to calculateCharges()
+         * We expect a call to the checker
+         */
 
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add(new EntryEvent(vehicle));
         crossingsForVehicle.add(new ExitEvent(vehicle));
+        Map<VehicleInterface, List<ZoneBoundaryCrossing>> crossingsByVehicles = new HashMap<>();
+        crossingsByVehicles.put(vehicle, crossingsForVehicle);
 
         context.checking(new Expectations() {{
             exactly(1).of(checker).checkOrderingOf(crossingsForVehicle);will(returnValue(true));
         }});
 
-        Map<VehicleInterface, List<ZoneBoundaryCrossing>> crossingsByVehicles = new HashMap<>();
-        crossingsByVehicles.put(vehicle, crossingsForVehicle);
         calculator.calculateCharges(crossingsByVehicles);
-
     }
-
-    //test3
-    //call the function charge_account
-    //pass into charge account a vehicle and a ridiculous charge that will make the account go negative
-    //thence expect a call like  accountsService.accountFor(vehicle).deduct(charge)
-    // and also expect a call like operationsTeam.issuePenaltyNotice(vehicle, charge);
 
     @Test
     public void checkChargeAccountForInsufficientFunds() {
+        /*
+         * Test Description
+         * Pass a vehicle and a very big charge to chargeAccount()
+         * We expect a call to Operations Team for insufficient funds
+         */
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
-        BigDecimal ridiculous_charge = new BigDecimal(10000);
+        BigDecimal ridiculous_charge = new BigDecimal(10000); // Creating a very expensive charge
 
         context.checking(new Expectations() {{
             exactly(1).of(operationsTeam).issuePenaltyNotice((Vehicle) vehicle,ridiculous_charge);
         }});
+
         calculator.charge_account(vehicle, ridiculous_charge);
     }
 
-
-
-    //test4
-    //call the function charge_account
-    //pass into charge account a vehicle not been registered and a charge of 0
-    //thence expect a call like  accountsService.accountFor(vehicle).deduct(charge)
-    // and also expect a call like operationsTeam.issuePenaltyNotice(vehicle, charge);
-
     @Test
     public void checkChargeAccountForNotRegistered() {
+        /*
+         * Test Description
+         * Pass a not registered vehicle and a charge to chargeAccount()
+         * We expect a call to Operations Team for not registered vehicle
+         */
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZZ");
-        BigDecimal charge = new BigDecimal(10000);
+        BigDecimal charge = new BigDecimal(10);
 
         context.checking(new Expectations() {{
             exactly(1).of(operationsTeam).issuePenaltyNotice((Vehicle) vehicle,charge);
         }});
+
         calculator.charge_account(vehicle, charge);
     }
 
-
-
-    //test5
-    //call the function charge_account
-    //pass into charge account a vehicle that has been registered and a charge of 0
-    //thence expect a call like  accountsService.accountFor(vehicle).deduct(charge)
-    //and also DO NOT expect a call like operationsTeam.issuePenaltyNotice(vehicle, charge);
-
     @Test
     public void checkChargeAccountForNoExceptions() {
-
+        /*
+         * Test Description
+         * Pass a vehicle and a charge to chargeAccount()
+         * We expect a nothing to happen (just the driver charged normally)
+         */
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         BigDecimal charge = new BigDecimal(0);
+
         context.checking(new Expectations() {{
             exactly(0).of(operationsTeam).issuePenaltyNotice((Vehicle) vehicle,charge);
         }});
 
         calculator.charge_account(vehicle,charge);
-
     }
-
-    //test 6
-    //call the function getCharge with an arraylist of events following these rules:
-    //1) less than 4 hours time in
-    //2) before 2pm
-    //assert that the returned value is £6
 
     @Test
     public void checkChargesForEntryBefore2LessThan4Hours(){
+        /*
+         * Test Description
+         * Pass a list of events to getCharge()
+         * We assert that the returned charge is correct
+         */
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(0).setTimeStamp(50000);
-        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(1).setTimeStamp(54000);
+        crossingsForVehicle.get(0).setTimeStamp(13*3600);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(1).setTimeStamp(15*3600);
 
-        assertThat(calculator.getCalculatedCharge(crossingsForVehicle), is(new BigDecimal(6)));
+        assertThat(calculator.getCharge(crossingsForVehicle), is(new BigDecimal(6)));
     }
-
-    //test 7
-    //call the function getCharge with an arraylist of events following these rules:
-    //1) more than 4 hours time in
-    //2) before 2pm
-    //assert that the returned value is £12
 
     @Test
     public void checkChargesForEntryBefore2MoreThan4hours(){
+        /*
+         * Test Description
+         * Pass a list of events to getCharge()
+         * We assert that the returned charge is correct
+         */
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(0).setTimeStamp(46800);
-        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(1).setTimeStamp(64800);
+        crossingsForVehicle.get(0).setTimeStamp(13*3600);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(1).setTimeStamp(18*3600);
 
-        assertThat(calculator.getCalculatedCharge(crossingsForVehicle), is(new BigDecimal(12)));
+        assertThat(calculator.getCharge(crossingsForVehicle), is(new BigDecimal(12)));
     }
-
-    //test 8
-    //call the function getCharge with an arraylist of events following these rules:
-    //1) less than 4 hours time in
-    //2) after 2pm
-    //assert that the returned value is £4
 
     @Test
     public void checkChargesForEntryAfter2LessThan4hours(){
+        /*
+         * Test Description
+         * Pass a list of events to getCharge()
+         * We assert that the returned charge is correct
+         */
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(0).setTimeStamp(50500);
-        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(1).setTimeStamp(54000);
+        crossingsForVehicle.get(0).setTimeStamp(15*3600);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(1).setTimeStamp(17*3600);
 
-        assertThat(calculator.getCalculatedCharge(crossingsForVehicle), is(new BigDecimal(4)));
+        assertThat(calculator.getCharge(crossingsForVehicle), is(new BigDecimal(4)));
     }
-
-    //test 9
-    //call the function getCharge with an arraylist of events following these rules:
-    //1) more than 4 hours time in
-    //2) after 2pm
-    //assert that the returned value is £12
 
     @Test
     public void checkChargesForEntryAfter2MoreThan4hours(){
+        /*
+         * Test Description
+         * Pass a list of events to getCharge()
+         * We assert that the returned charge is correct
+         */
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(0).setTimeStamp(50500);
-        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(1).setTimeStamp(68400);
+        crossingsForVehicle.get(0).setTimeStamp(15*3600);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(1).setTimeStamp(20*3600);
 
-        assertThat(calculator.getCalculatedCharge(crossingsForVehicle), is(new BigDecimal(12)));
+        assertThat(calculator.getCharge(crossingsForVehicle), is(new BigDecimal(12)));
     }
-
-    //test 10
-    //call the function getCharge with an arraylist of events following these rules:
-    //1) less than 4 hours time in
-    //2) first entry before 2pm , exits , second entry after 2pm
-    //assert that the returned value is £6
 
     @Test
-    public void checkChargesForDoubleEntryBeforeandAfter2LessThan4hours(){
+    public void checkChargesForDoubleEntryBeforeAndAfter2LessThan4hours(){
+        /*
+         * Test Description
+         * Pass a list of events to getCharge()
+         * We assert that the returned charge is correct
+         */
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(0).setTimeStamp(46800);
-        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(1).setTimeStamp(50000);
+        crossingsForVehicle.get(0).setTimeStamp(12*3600);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(1).setTimeStamp(13*3600);
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(2).setTimeStamp(54000);
-        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(3).setTimeStamp(56000);
+        crossingsForVehicle.get(2).setTimeStamp(15*3600);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(3).setTimeStamp(16*3600);
 
-        assertThat(calculator.getCalculatedCharge(crossingsForVehicle), is(new BigDecimal(6)));
+        assertThat(calculator.getCharge(crossingsForVehicle), is(new BigDecimal(6)));
     }
-
-    //test 11
-    //call the function getCharge with an arraylist of events following these rules:
-    //1) more than 4 hours time in
-    //2) first entry before 2pm , exits , second entry after 2pm
-    //assert that the returned value is £12
 
     @Test
     public void checkChargesForDoubleEntryBeforeAndAfter2StayingForMoreThan4hours(){
+        /*
+         * Test Description
+         * Pass a list of events to getCharge()
+         * We assert that the returned charge is correct
+         */
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(0).setTimeStamp(46800);
-        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(1).setTimeStamp(50000);
+        crossingsForVehicle.get(0).setTimeStamp(12*3600);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(1).setTimeStamp(14*3600);
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(2).setTimeStamp(54000);
-        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(3).setTimeStamp(69000);
+        crossingsForVehicle.get(2).setTimeStamp(15*3600);
+        crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
+        crossingsForVehicle.get(3).setTimeStamp(18*3600);
 
-        assertThat(calculator.getCalculatedCharge(crossingsForVehicle), is(new BigDecimal(12)));
+        assertThat(calculator.getCharge(crossingsForVehicle), is(new BigDecimal(12)));
     }
 
     @Test
     public void checkChargesForExtremeScenario() {
+        /*
+         * Test Description
+         * Pass a list of events to getCharge()
+         * We assert that the returned charge is correct
+         */
         List<ZoneBoundaryCrossing> crossingsForVehicle = new ArrayList<>();
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
@@ -251,38 +239,14 @@ public class CalculatorTest {
         crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
         crossingsForVehicle.get(1).setTimeStamp(60);
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(2).setTimeStamp(5*60*60);
+        crossingsForVehicle.get(2).setTimeStamp(5*3600);
         crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
-        crossingsForVehicle.get(3).setTimeStamp(5*60*60+1);
+        crossingsForVehicle.get(3).setTimeStamp(5*3600+1);
         crossingsForVehicle.add((new EntryEvent(vehicle))); // Adding an entry
-        crossingsForVehicle.get(4).setTimeStamp(10*60*60);
+        crossingsForVehicle.get(4).setTimeStamp(10*3600);
         crossingsForVehicle.add((new ExitEvent(vehicle))); // Adding an exit
-        crossingsForVehicle.get(5).setTimeStamp(10*60*60+1);
+        crossingsForVehicle.get(5).setTimeStamp(10*3600+1);
 
-        assertThat(calculator.getCalculatedCharge(crossingsForVehicle), is(new BigDecimal(18)));
+        assertThat(calculator.getCharge(crossingsForVehicle), is(new BigDecimal(18)));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -16,6 +16,7 @@ public class VehicleTest {
          * Check the toString() method in the class
          */
         VehicleInterface vehicle = Vehicle.withRegistration("A123 XYZ");
+
         assertThat(vehicle.toString(), is("Vehicle [A123 XYZ]"));
     }
 
@@ -44,6 +45,7 @@ public class VehicleTest {
          */
         VehicleInterface vehicle1 = Vehicle.withRegistration(null);
         assertTrue(vehicle1.hashCode() == 0);
+
         VehicleInterface vehicle2 = Vehicle.withRegistration("A123 XYZ");
         assertTrue(vehicle2.hashCode() == vehicle2.getRegistration().hashCode());
     }

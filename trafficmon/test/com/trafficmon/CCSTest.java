@@ -2,7 +2,6 @@ package com.trafficmon;
 
 import org.junit.Rule;
 import org.junit.Test;
-
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,17 +17,15 @@ public class CCSTest {
     private CongestionChargeSystem system = new CongestionChargeSystem(calculator,checker);
 
     @Test
-        public void carGoesInAndOutCheckEventLogSize() {
+    public void carGoesInAndOutCheckEventLogSize() {
         /*
          * Test Description
-         * A car goes in then out, we check if the event log has been updated with 2 entries to
-         * reflect this
-         *
-         * We created a new public method called getSizeOfEventLog to determine this value
-         * */
+         * A car goes in then out
+         * We assert that the Event Log has been updated with 2 events to reflect this
+         */
         context.checking(new Expectations() {{
             ignoring(checker).previouslyRegistered(Vehicle.withRegistration("A123 XYZ"),system.getEventLog());
-            will(returnValue(true));
+                will(returnValue(true));
         }});
 
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
@@ -40,9 +37,9 @@ public class CCSTest {
     public void carGoesInAndOutCheckEventLogEntries() {
         /*
          * Test Description
-         * A car goes in then out, we check the event log entries if they are indeed the correct
-         * vehicles that are logged and whether the first and second are entry and exit events respectively.
-         *
+         * A car goes in then out
+         * We assert that the Event Log events are indeed for the correct vehicles
+         * and whether the first and second are entry and exit events respectively.
          */
         context.checking(new Expectations() {{
             ignoring(checker).previouslyRegistered(Vehicle.withRegistration("A123 XYZ"),system.getEventLog());
@@ -59,41 +56,51 @@ public class CCSTest {
 
     @Test
     public void checkPreviouslyRegisteredIsDelegatedToChecker() {
+        /*
+         * Test Description
+         * A car goes in then out
+         * We expect a call to the checker, to check if the vehicle is already registered
+         */
         context.checking(new Expectations() {{
             exactly(1).of(checker).previouslyRegistered(Vehicle.withRegistration("A123 XYZ"),system.getEventLog());
-            will(returnValue(true));
+                will(returnValue(true));
         }});
 
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
-
     }
 
     @Test
     public void checkPreviouslyRegisteredIsDelegatedToCheckerUsingAnUnregisteredCar() {
+        /*
+         * Test Description
+         * A car goes in then another car goes out
+         * We expect a call to the checker, to check if that unregistered car is registered
+         */
         context.checking(new Expectations() {{
             exactly(1).of(checker).previouslyRegistered(Vehicle.withRegistration("A123 XYA"),system.getEventLog());
-            will(returnValue(false));
+                will(returnValue(false));
         }});
 
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYA"));
-
     }
 
     @Test
     public void checkCalculateChargeIsDelegatedToCalculator() {
+        /*
+         * Test Description
+         * A car goes in then out, then the calculateCharges() is called
+         * We expect a call to the calculator with the HashMap generated
+         */
         context.checking(new Expectations() {{
             ignoring(checker).previouslyRegistered(Vehicle.withRegistration("A123 XYZ"),system.getEventLog());
-            will(returnValue(true));
+                will(returnValue(true));
             exactly(1).of(calculator).calculateCharges(system.getHashMap());
         }});
 
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
         system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
         system.calculateCharges();
-
     }
-
-
 }

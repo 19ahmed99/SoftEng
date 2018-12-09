@@ -7,7 +7,7 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<>();
     private final CalculatorInterface calculator;
     private final CheckerInterface checker;
-    private final Map<VehicleInterface, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<>(); //moved to the top
+    private final Map<VehicleInterface, List<ZoneBoundaryCrossing>> crossingsByVehicle = new HashMap<>();
 
     CongestionChargeSystem() {
         this.checker = new Checker();
@@ -15,14 +15,13 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
     }
 
     CongestionChargeSystem(CalculatorInterface calculator, CheckerInterface checker) {
-        // Constructor that takes an operations team (for testing)
+        // Constructor that takes a Calculator and a Checker for testing
         this.calculator = calculator;
         this.checker = checker;
-
     }
 
     public void vehicleEnteringZone(VehicleInterface vehicle) {
-        // Vehicle entry
+        // Vehicle Entry
         EntryEvent new_entry = new EntryEvent(vehicle);
         eventLog.add(new_entry);
         if (!crossingsByVehicle.containsKey(vehicle)) {
@@ -32,7 +31,7 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
     }
 
     public void vehicleLeavingZone(VehicleInterface vehicle) {
-        // Vehicle exit
+        // Vehicle Exit
         if (checker.previouslyRegistered(vehicle, eventLog)){
             ExitEvent new_exit = new ExitEvent(vehicle);
             eventLog.add(new_exit);
@@ -45,14 +44,15 @@ public class CongestionChargeSystem implements CongestionChargeSystemInterface {
         calculator.calculateCharges(crossingsByVehicle);
     }
 
-
-    // ----- Test Method -----
+    // ----- Test Methods -----
 
     public List<ZoneBoundaryCrossing> getEventLog() {
+        // Returns the EventLog
         return eventLog;
     }
 
     public Map<VehicleInterface, List<ZoneBoundaryCrossing>> getHashMap(){
+        // Returns the HashMap
         return crossingsByVehicle;
     }
 }

@@ -9,9 +9,9 @@ public abstract class ZoneBoundaryCrossing {
     private int time;
 
     ZoneBoundaryCrossing(VehicleInterface vehicle) {
-        // Constructor that takes a vehicle and gets the actual time
+        // Constructor that takes a Vehicle and gets the actual time
         this.vehicle = vehicle;
-        // Gets the time in the day (in terms of seconds)
+        // Gets the time of the day (in terms of seconds)
         Instant instant = new Instant();
         this.time = instant.get(DateTimeFieldType.secondOfDay());
     }
@@ -29,7 +29,7 @@ public abstract class ZoneBoundaryCrossing {
     // ----- Test Methods -----
 
     public void setTimeStamp(int time){
-        // A test method to set the timestamp
+        // A method to set the timestamp
         this.time = time;
     }
 }
