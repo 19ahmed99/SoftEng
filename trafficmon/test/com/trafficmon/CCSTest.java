@@ -43,7 +43,7 @@ public class CCSTest {
          */
         context.checking(new Expectations() {{
             ignoring(checker).previouslyRegistered(Vehicle.withRegistration("A123 XYZ"),system.getEventLog());
-            will(returnValue(true));
+                will(returnValue(true));
         }});
 
         system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
@@ -52,6 +52,33 @@ public class CCSTest {
         assertTrue(system.getEventLog().get(1).getVehicle().equals(Vehicle.withRegistration("A123 XYZ")));
         assertTrue(system.getEventLog().get(0) instanceof EntryEvent);
         assertTrue(system.getEventLog().get(1) instanceof ExitEvent);
+    }
+
+    @Test
+    public void carsGoInAndOutCheckHashMap() {
+        /*
+         * Test Description
+         * Two cars go in then out
+         * We assert that the HashMap events and vehicles are correct
+         */
+        context.checking(new Expectations() {{
+            ignoring(checker).previouslyRegistered(Vehicle.withRegistration("A123 XYZ"),system.getEventLog());
+                will(returnValue(true));
+            ignoring(checker).previouslyRegistered(Vehicle.withRegistration("A123 ABC"),system.getEventLog());
+                will(returnValue(true));
+        }});
+
+        system.vehicleEnteringZone(Vehicle.withRegistration("A123 XYZ"));
+        system.vehicleEnteringZone(Vehicle.withRegistration("A123 ABC"));
+        system.vehicleLeavingZone(Vehicle.withRegistration("A123 XYZ"));
+        system.vehicleLeavingZone(Vehicle.withRegistration("A123 ABC"));
+        assertTrue(system.getHashMap().containsKey(Vehicle.withRegistration("A123 XYZ")));
+        assertTrue(system.getHashMap().containsKey(Vehicle.withRegistration("A123 ABC")));
+        assertTrue(system.getHashMap().size() == 2);
+        assertTrue(system.getHashMap().get(Vehicle.withRegistration("A123 XYZ")).get(0) instanceof EntryEvent);
+        assertTrue(system.getHashMap().get(Vehicle.withRegistration("A123 ABC")).get(0) instanceof EntryEvent);
+        assertTrue(system.getHashMap().get(Vehicle.withRegistration("A123 XYZ")).get(1) instanceof ExitEvent);
+        assertTrue(system.getHashMap().get(Vehicle.withRegistration("A123 ABC")).get(1) instanceof ExitEvent);
     }
 
     @Test

@@ -17,10 +17,7 @@ public class Example {
         Thread.sleep(secs * 1000);
     }
 
-
-
-
-    //private static void delayMinutes(int mins) throws InterruptedException {
-    //delaySeconds(mins * 60);
-    // }
+    /*private static void delayMinutes(int mins) throws InterruptedException {
+        delaySeconds(mins * 60);
+     }*/
 }
